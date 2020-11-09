@@ -107,6 +107,11 @@
                 "output": "/"
               },
               {
+                "glob": "**/*.svg",
+                "input": "src/assets/icon",
+                "output": "./svg"
+              },
+              {
                 "glob": "**/*",
                 "input": "src/assets",
                 "output": "/assets"

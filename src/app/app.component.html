@@ -5,9 +5,6 @@
       <ion-content>
 
         <ion-list lines="none">
-          <ion-list-header>
-            Dotalite
-          </ion-list-header>
 
           <ion-menu-toggle *ngFor="let page of appPages; let i = index">
             <ion-item [routerLink]="page.url" routerLinkActive="selected" routerDirection="root" detail="false">
@@ -21,33 +18,12 @@
         </ion-list>
 
         <ion-list lines="none">
-          <ion-list-header>
-            Account
-          </ion-list-header>
-
-          <ion-menu-toggle autoHide="false">
-            <ion-item routerLink="/account" routerLinkActive="active" routerDirection="root" detail="false">
-              <ion-icon slot="start" name="person"></ion-icon>
-              <ion-label>
-                Account
-              </ion-label>
-            </ion-item>
-          </ion-menu-toggle>
 
           <ion-menu-toggle autoHide="false">
             <ion-item routerLink="/support" routerLinkActive="active" routerDirection="root" detail="false">
               <ion-icon slot="start" name="help"></ion-icon>
               <ion-label>
                 Support
-              </ion-label>
-            </ion-item>
-          </ion-menu-toggle>
-
-          <ion-menu-toggle autoHide="false">
-            <ion-item button detail="false">
-              <ion-icon slot="start" name="log-out"></ion-icon>
-              <ion-label>
-                Logout
               </ion-label>
             </ion-item>
           </ion-menu-toggle>
@@ -59,6 +35,16 @@
             </ion-label>
             <ion-toggle (ionChange)="onToggleColorTheme($event)"></ion-toggle>
           </ion-item>
+        </ion-list>
+
+        <ion-list lines="none">
+          <ion-item button class="login-button">
+            <ion-icon slot="start" src="assets/icon/steam-circled.svg"></ion-icon>
+            <ion-label>
+              Log In
+            </ion-label>
+          </ion-item>
+
         </ion-list>
 
       </ion-content>

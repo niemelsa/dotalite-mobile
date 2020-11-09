@@ -1,12 +1,28 @@
-<ion-header>
+<ion-header class="ion-no-border">
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Home</ion-title>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon name="notifications"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
-  heloust
+<ion-content class="ion-padding-horizontal">
+
+  <!-- showcase component -->
+  <ion-card button>
+    <ion-img src="../../../assets/test2.jpg"></ion-img>
+  </ion-card>
+
+  <!-- searching component -->
+  <ion-searchbar></ion-searchbar>
+
+
+  <!-- favorites and shortcuts component -->
+
+
 </ion-content>

@@ -25,5 +25,5 @@ const appPages: Array<AppPage> = [
 
 export function getPages(): Array<AppPage> {
     return appPages;
-};
+}
 
