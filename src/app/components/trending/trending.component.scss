@@ -1,0 +1,31 @@
+ion-card {
+    width: 40vw;
+    // max-width: 150px;
+    height: 200px;
+    margin: 0;
+    // background: linear-gradient(to bottom, var(--ion-color-primary), var(--ion-color-secondary));
+
+    ion-card-header {
+        position: absolute;
+        bottom: 0px;
+
+        ion-card-subtitle {
+            margin: 0;
+        }
+    }
+}
+
+ion-slides {
+    background: var(--ion-color-light);
+    margin-bottom: 20px;
+}
+
+ion-slide {
+    width: auto;
+}
+
+ion-item.home-header {
+    font-weight: 400;
+    font-size: 20px;
+    color: var(--ion-color-dark-shade);
+}

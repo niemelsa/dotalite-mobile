@@ -1,0 +1,23 @@
+.bottom-section {
+    background-color: var(--ion-color-light-shade);
+    height: 100%;
+// height: 300px;
+    // padding: 10px;
+}
+
+
+ion-list {
+    // padding: 10px;
+    background-color: transparent;
+
+    ion-item {
+        margin: 0px 20px 10px 20px;
+        border-radius: 10px;
+        --min-height: 70px;
+        // --background: linear-gradient(to left, var(--ion-color-secondary), var(--ion-color-secondary-shade));
+    }
+
+    ion-thumbnail {
+        --border-radius: 5px;
+    }
+}

@@ -1,0 +1,21 @@
+<ion-item class="home-header" color="none" lines="none">
+  <ion-label>
+    Trending
+  </ion-label>
+  <ion-icon slot="end" name="chevron-forward"></ion-icon>
+</ion-item>
+
+<ion-slides [options]="slideOpts" class="ion-padding-horizontal">
+  <ion-slide *ngFor="let item of mockTrending;">
+    <ion-card button class="ion-text-left" [ngStyle]="styleCard(item)">
+      <ion-card-header>
+        <ion-card-title>
+          {{ item.title }}
+        </ion-card-title>
+        <ion-card-subtitle>
+          {{ item.category }}
+        </ion-card-subtitle>
+      </ion-card-header>
+    </ion-card>
+  </ion-slide>
+</ion-slides>

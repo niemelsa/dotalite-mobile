@@ -32,3 +32,10 @@
 ion-menu-button {
     --color: var(--ion-color-dark);
 }
+
+ion-item.home-header {
+    font-weight: 400;
+    font-size: 20px;
+    --margin: 0;
+    color: var(--ion-color-dark-shade);
+}
