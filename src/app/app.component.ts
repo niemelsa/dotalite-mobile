@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { MenuController, Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { getPages } from './pages/appPages';
+import { getTabPages, getAppPages } from './pages/appPages';
 import { AppPage } from './interfaces/app-page.interface';
 
 @Component({
@@ -29,7 +29,7 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
       this.menu.enable(true);
-      this.appPages = getPages();
+      this.appPages = getAppPages();
       this.toggleTheme();
     });
   }

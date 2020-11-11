@@ -40,7 +40,7 @@ export class TrendingComponent implements OnInit {
 
   styleCard(item) {
     return {
-      'background-image': `linear-gradient(rgba(28, 25, 36, 0.1), var(--ion-color-light-shade) 80%), url(${item.image})`,
+      'background-image': `linear-gradient(rgba(28, 25, 36, 0.1), #16161d 80%), url(${item.image})`,
       'background-size': 'cover',
       'background-position': 'center',
       'width': '40vw',

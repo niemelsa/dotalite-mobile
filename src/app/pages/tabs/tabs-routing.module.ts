@@ -2,9 +2,10 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HeroesPage } from '../heroes/heroes.page';
 import { HomePage } from '../home/home.page';
+import { LeaderboardsPage } from '../leaderboards/leaderboards.page';
 import { MatchesPage } from '../matches/matches.page';
 import { ProfilePage } from '../profile/profile.page';
-import { TeamsPage } from '../teams/teams.page';
+import { TournamentsPage } from '../tournaments/tournaments.page';
 
 import { TabsPage } from './tabs.page';
 
@@ -19,6 +20,15 @@ const routes: Routes = [
           {
             path: '',
             component: HomePage
+          }
+        ]
+      },
+      {
+        path: 'leaderboards',
+        children: [
+          {
+            path: '',
+            component: LeaderboardsPage
           }
         ]
       },
@@ -50,11 +60,11 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'teams',
+        path: 'tournaments',
         children: [
           {
             path: '',
-            component: TeamsPage
+            component: TournamentsPage
           }
         ]
       },

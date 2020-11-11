@@ -1,7 +1,5 @@
 ion-card {
-    width: 40vw;
     max-width: 150px;
-    height: 200px;
     margin: 0;
     margin-right: 10px;
     
@@ -16,8 +14,8 @@ ion-card {
 }
 
 ion-slides {
-    background: var(--ion-color-light);
     margin-bottom: 20px;
+    padding-top: 10px;
 }
 
 ion-slide {
@@ -27,5 +25,5 @@ ion-slide {
 ion-item.home-header {
     font-weight: 400;
     font-size: 20px;
-    color: var(--ion-color-dark-shade);
+    --background: transparent;
 }

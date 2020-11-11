@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppPage } from 'src/app/interfaces/app-page.interface';
-import { getPages } from '../appPages';
+import { getTabPages } from '../appPages';
 
 @Component({
   selector: 'app-tabs',
@@ -8,13 +8,13 @@ import { getPages } from '../appPages';
   styleUrls: ['./tabs.page.scss'],
 })
 export class TabsPage implements OnInit {
-  appPages: Array<AppPage>;
+  tabPages: Array<AppPage>;
 
   constructor() {
   }
 
   ngOnInit() {
-    this.appPages = getPages();
+    this.tabPages = getTabPages();
   }
 
 }

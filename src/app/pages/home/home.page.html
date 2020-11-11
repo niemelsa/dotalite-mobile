@@ -14,23 +14,40 @@
   </ion-toolbar>
 </ion-header>
 
+
 <ion-content>
 
-  <!-- trending component -->
-  <app-trending></app-trending>
-
-
-  <!-- shortcut component -->
-  <div class="shortcut-wrapper">
-    <app-shortcut></app-shortcut>
+  <!-- welcome component -->
+  <div class="welcome-wrapper">
+    <ion-item lines="none">
+      <ion-label>
+        <p>Welcome back,</p>
+        <h1>soupy</h1>
+      </ion-label>
+      <ion-thumbnail style="--border-radius: 10px;">
+        <img
+          src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/69/6926d43e27abb3d730544f008aa3f8dad36be0da_full.jpg">
+      </ion-thumbnail>
+    </ion-item>
   </div>
 
 
-  <!-- searching component -->
-  <!-- <ion-searchbar></ion-searchbar> -->
+  <!-- shortcut component -->
+  <app-shortcut></app-shortcut>
 
 
+  <!-- add space -->
+  <ion-img style="margin: 15px;" src="https://www.opendota.com/assets/images/vp-banner.jpg"></ion-img>
 
 
+  <!-- bottom-section -->
+  <div class="dashboard-section ion-padding">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Battle Pass 2020</ion-card-title>
+        <ion-card-subtitle>something here</ion-card-subtitle>
+      </ion-card-header>
+    </ion-card>
+  </div>
 
 </ion-content>

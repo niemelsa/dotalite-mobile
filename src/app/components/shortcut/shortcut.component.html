@@ -1,18 +1,29 @@
 <ion-segment [(ngModel)]="selectedTab" (ionChange)="segmentChanged($event)" mode="md" scrollable>
+  <ion-segment-button value="featured">
+    <ion-label>Featured</ion-label>
+  </ion-segment-button>
   <ion-segment-button value="favorites">
     <ion-label>Favorites</ion-label>
   </ion-segment-button>
-  <ion-segment-button value="teams">
-    <ion-label>Teams</ion-label>
+  <ion-segment-button value="news">
+    <ion-label>News</ion-label>
   </ion-segment-button>
-  <ion-segment-button value="players">
-    <ion-label>Players</ion-label>
-  </ion-segment-button>
-  <ion-segment-button value="tournaments">
+  <!-- <ion-segment-button value="tournaments">
     <ion-label>Tournaments</ion-label>
-  </ion-segment-button>
+  </ion-segment-button> -->
 </ion-segment>
 
+<ion-list *ngIf="selectedTab == 'featured'" lines="none">
+  <!-- <ion-item button *ngFor="let favorite of mockFavorites;">
+    <ion-label>
+      <h3>Heloust</h3>
+      <p>teams works</p>
+    </ion-label>
+  </ion-item> -->
+
+  <app-trending></app-trending>
+
+</ion-list>
 
 <ion-list *ngIf="selectedTab == 'favorites'" lines="none">
   <ion-item button *ngFor="let favorite of mockFavorites;">
@@ -26,16 +37,7 @@
   </ion-item>
 </ion-list>
 
-<ion-list *ngIf="selectedTab == 'teams'" lines="none">
-  <ion-item button *ngFor="let favorite of mockFavorites;">
-    <ion-label>
-      <h3>Heloust</h3>
-      <p>teams works</p>
-    </ion-label>
-  </ion-item>
-</ion-list>
-
-<ion-list *ngIf="selectedTab == 'players'" lines="none">
+<ion-list *ngIf="selectedTab == 'news'" lines="none">
   <ion-item button *ngFor="let favorite of mockFavorites;">
     <ion-label>
       <h3>Heloust</h3>
@@ -44,11 +46,11 @@
   </ion-item>
 </ion-list>
 
-<ion-list *ngIf="selectedTab == 'tournaments'" lines="none">
+<!-- <ion-list *ngIf="selectedTab == 'tournaments'" lines="none">
   <ion-item button *ngFor="let favorite of mockFavorites;">
     <ion-label>
       <h3>Heloust</h3>
       <p>tournaments works</p>
     </ion-label>
   </ion-item>
-</ion-list>
+</ion-list> -->

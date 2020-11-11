@@ -24,7 +24,7 @@ export class ShortcutComponent implements OnInit {
     },
   ];
 
-  selectedTab = 'favorites';
+  selectedTab = 'featured';
 
   constructor() { }
 
