@@ -1,10 +1,10 @@
 ion-card {
     width: 40vw;
-    // max-width: 150px;
+    max-width: 150px;
     height: 200px;
     margin: 0;
-    // background: linear-gradient(to bottom, var(--ion-color-primary), var(--ion-color-secondary));
-
+    margin-right: 10px;
+    
     ion-card-header {
         position: absolute;
         bottom: 0px;

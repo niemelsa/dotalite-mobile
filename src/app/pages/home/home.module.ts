@@ -8,6 +8,7 @@ import { HomePageRoutingModule } from './home-routing.module';
 
 import { HomePage } from './home.page';
 import { TrendingComponent } from 'src/app/components/trending/trending.component';
+import { ShortcutComponent } from 'src/app/components/shortcut/shortcut.component';
 
 @NgModule({
   imports: [
@@ -16,6 +17,6 @@ import { TrendingComponent } from 'src/app/components/trending/trending.componen
     IonicModule,
     HomePageRoutingModule,
   ],
-  declarations: [HomePage, TrendingComponent]
+  declarations: [HomePage, TrendingComponent, ShortcutComponent]
 })
 export class HomePageModule { }

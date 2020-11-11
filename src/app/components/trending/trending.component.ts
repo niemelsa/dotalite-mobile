@@ -8,7 +8,6 @@ import { Component, OnInit } from '@angular/core';
 export class TrendingComponent implements OnInit {
   slideOpts = {
     slidesPerView: 'auto',
-    spaceBetween: 10,
   };
 
   mockTrending = [
