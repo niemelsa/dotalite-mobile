@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { User } from './../../interfaces/user.interface';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-shortcut',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./shortcut.component.scss'],
 })
 export class ShortcutComponent implements OnInit {
+  @Input() user: User | null;
+
   mockFavorites = [
     {
       title: 'soupy',

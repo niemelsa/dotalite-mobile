@@ -10,7 +10,7 @@ ion-item {
 }
 
 ion-item.login-button {
-    --background: var(--ion-color-light-shade);
+    --background: var(--ion-color-light);
     margin: 5px 15px;
     border-radius: 5px;
 
@@ -31,10 +31,15 @@ ion-item.selected {
 }
 
 ion-menu ion-list:not(:last-of-type) {
-  border-bottom: 1px solid var(--ion-color-light-shade);
+  border-bottom: 1px solid var(--ion-color-light);
 }
 
 /* prevent transition when changing mode */
 ion-menu ion-item {
   --transition: none;
+}
+
+.ripple-parent {
+  position: relative;
+  overflow: hidden;
 }

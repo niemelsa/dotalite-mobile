@@ -2,27 +2,16 @@
   <ion-segment-button value="featured">
     <ion-label>Featured</ion-label>
   </ion-segment-button>
-  <ion-segment-button value="favorites">
+  <ion-segment-button *ngIf="user" value="favorites">
     <ion-label>Favorites</ion-label>
   </ion-segment-button>
   <ion-segment-button value="news">
     <ion-label>News</ion-label>
   </ion-segment-button>
-  <!-- <ion-segment-button value="tournaments">
-    <ion-label>Tournaments</ion-label>
-  </ion-segment-button> -->
 </ion-segment>
 
 <ion-list *ngIf="selectedTab == 'featured'" lines="none">
-  <!-- <ion-item button *ngFor="let favorite of mockFavorites;">
-    <ion-label>
-      <h3>Heloust</h3>
-      <p>teams works</p>
-    </ion-label>
-  </ion-item> -->
-
   <app-trending></app-trending>
-
 </ion-list>
 
 <ion-list *ngIf="selectedTab == 'favorites'" lines="none">
@@ -41,16 +30,7 @@
   <ion-item button *ngFor="let favorite of mockFavorites;">
     <ion-label>
       <h3>Heloust</h3>
-      <p>players works</p>
+      <p>news works</p>
     </ion-label>
   </ion-item>
 </ion-list>
-
-<!-- <ion-list *ngIf="selectedTab == 'tournaments'" lines="none">
-  <ion-item button *ngFor="let favorite of mockFavorites;">
-    <ion-label>
-      <h3>Heloust</h3>
-      <p>tournaments works</p>
-    </ion-label>
-  </ion-item>
-</ion-list> -->

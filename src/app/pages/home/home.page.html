@@ -17,23 +17,23 @@
 
 <ion-content>
 
+
   <!-- welcome component -->
   <div class="welcome-wrapper">
-    <ion-item lines="none">
+    <ion-item button *ngIf="(user$ | async) as user" lines="none">
       <ion-label>
         <p>Welcome back,</p>
-        <h1>soupy</h1>
+        <h1>{{ user.name }}</h1>
       </ion-label>
       <ion-thumbnail style="--border-radius: 10px;">
-        <img
-          src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/69/6926d43e27abb3d730544f008aa3f8dad36be0da_full.jpg">
+        <img [src]="user.image">
       </ion-thumbnail>
     </ion-item>
   </div>
 
 
   <!-- shortcut component -->
-  <app-shortcut></app-shortcut>
+  <app-shortcut [user]="user$ | async"></app-shortcut>
 
 
   <!-- add space -->
