@@ -1,4 +1,4 @@
-import { UserService } from './services/user.service';
+import { AuthService } from './services/auth.service';
 import { Component } from '@angular/core';
 
 import { MenuController, Platform } from '@ionic/angular';
@@ -12,19 +12,18 @@ import { Observable } from 'rxjs';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
-  styleUrls: ['app.component.scss']
+  styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
   appPages: Array<AppPage>;
   dark = true;
-  user$: Observable<User>;
 
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private menu: MenuController,
-    private userService: UserService
+    public authService: AuthService
   ) {
     this.initializeApp();
   }
@@ -36,7 +35,6 @@ export class AppComponent {
       this.menu.enable(true);
       this.appPages = getAppPages();
       this.toggleTheme();
-      this.user$ = this.userService.user;
     });
   }
 
@@ -45,19 +43,13 @@ export class AppComponent {
   }
 
   login() {
-    console.log('login pushed');
-
-    const newUser: User = {
-      name: 'keittonen',
-      image: 'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/69/6926d43e27abb3d730544f008aa3f8dad36be0da_full.jpg',
-      id: 'test'
-    }
-
-    this.userService.login(newUser);
+    window.location.href = 'http://localhost:3000/auth/steam';
   }
 
   logout() {
-    this.userService.logout();
+    this.authService.logout().then(() => {
+      console.log('user logged out');
+    });
   }
 
   toggleTheme() {

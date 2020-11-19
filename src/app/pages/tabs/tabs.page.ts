@@ -10,11 +10,9 @@ import { getTabPages } from '../appPages';
 export class TabsPage implements OnInit {
   tabPages: Array<AppPage>;
 
-  constructor() {
-  }
+  constructor() {}
 
   ngOnInit() {
     this.tabPages = getTabPages();
   }
-
 }

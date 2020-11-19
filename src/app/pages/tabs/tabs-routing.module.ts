@@ -19,66 +19,66 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            component: HomePage
-          }
-        ]
+            component: HomePage,
+          },
+        ],
       },
       {
         path: 'leaderboards',
         children: [
           {
             path: '',
-            component: LeaderboardsPage
-          }
-        ]
+            component: LeaderboardsPage,
+          },
+        ],
       },
       {
         path: 'profile',
         children: [
           {
             path: '',
-            component: ProfilePage
-          }
-        ]
+            component: ProfilePage,
+          },
+        ],
       },
       {
         path: 'matches',
         children: [
           {
             path: '',
-            component: MatchesPage
-          }
-        ]
+            component: MatchesPage,
+          },
+        ],
       },
       {
         path: 'heroes',
         children: [
           {
             path: '',
-            component: HeroesPage
-          }
-        ]
+            component: HeroesPage,
+          },
+        ],
       },
       {
         path: 'tournaments',
         children: [
           {
             path: '',
-            component: TournamentsPage
-          }
-        ]
+            component: TournamentsPage,
+          },
+        ],
       },
       {
         path: '',
         redirectTo: '/tabs/home',
-        pathMatch: 'full'
-      }
-    ]
-  }
+        pathMatch: 'full',
+      },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class TabsPageRoutingModule { }
+export class TabsPageRoutingModule {}

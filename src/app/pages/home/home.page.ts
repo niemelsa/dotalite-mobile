@@ -1,7 +1,5 @@
-import { UserService } from './../../services/user.service';
+import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { User } from 'src/app/interfaces/user.interface';
 
 @Component({
   selector: 'app-home',
@@ -9,11 +7,7 @@ import { User } from 'src/app/interfaces/user.interface';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
-  user$: Observable<User>;
+  constructor(public auth: AuthService) {}
 
-  constructor(private userService: UserService) { }
-
-  ngOnInit() {
-    this.user$ = this.userService.user;
-  }
+  ngOnInit() {}
 }

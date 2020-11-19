@@ -1,11 +1,10 @@
 <ion-tabs>
-
   <ion-tab-bar slot="bottom">
-
-    <ion-tab-button *ngFor="let page of tabPages; let i = index" [tab]="page.title.toLowerCase()">
+    <ion-tab-button
+      *ngFor="let page of tabPages; let i = index"
+      [tab]="page.title.toLowerCase()"
+    >
       <ion-icon [name]="page.icon"></ion-icon>
-      <!-- <ion-label>{{page.title}}</ion-label> -->
     </ion-tab-button>
-
   </ion-tab-bar>
 </ion-tabs>
