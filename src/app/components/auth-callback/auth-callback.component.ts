@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -7,11 +8,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./auth-callback.component.scss'],
 })
 export class AuthCallbackComponent implements OnInit {
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit() {
     const token = this.extractTokenFromUrl();
-    this.authService.verifyToken(token);
+    this.authService
+      .verifyToken(token)
+      .subscribe({
+        next: () => console.log('login success'),
+        error: (error) => {
+          this.authService.isAuthenticated.next(false);
+          this.authService.user.next(null);
+          console.log('login failed ', error);
+        },
+      })
+      .add(() => {
+        this.router.navigate(['/']);
+      });
   }
 
   extractTokenFromUrl() {
