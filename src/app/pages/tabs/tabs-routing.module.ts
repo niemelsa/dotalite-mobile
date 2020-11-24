@@ -1,3 +1,4 @@
+import { PlayersPage } from './../players/players.page';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HeroesPage } from '../heroes/heroes.page';
@@ -16,57 +17,37 @@ const routes: Routes = [
     children: [
       {
         path: 'home',
-        children: [
-          {
-            path: '',
-            component: HomePage,
-          },
-        ],
+        loadChildren: () =>
+          import('../home/home.module').then((m) => m.HomePageModule),
       },
       {
         path: 'leaderboards',
-        children: [
-          {
-            path: '',
-            component: LeaderboardsPage,
-          },
-        ],
+        loadChildren: () =>
+          import('../leaderboards/leaderboards.module').then(
+            (m) => m.LeaderboardsPageModule
+          ),
       },
       {
-        path: 'profile',
-        children: [
-          {
-            path: '',
-            component: ProfilePage,
-          },
-        ],
+        path: 'players',
+        loadChildren: () =>
+          import('../players/players.module').then((m) => m.PlayersPageModule),
       },
       {
         path: 'matches',
-        children: [
-          {
-            path: '',
-            component: MatchesPage,
-          },
-        ],
+        loadChildren: () =>
+          import('../matches/matches.module').then((m) => m.MatchesPageModule),
       },
       {
         path: 'heroes',
-        children: [
-          {
-            path: '',
-            component: HeroesPage,
-          },
-        ],
+        loadChildren: () =>
+          import('../heroes/heroes.module').then((m) => m.HeroesPageModule),
       },
       {
         path: 'tournaments',
-        children: [
-          {
-            path: '',
-            component: TournamentsPage,
-          },
-        ],
+        loadChildren: () =>
+          import('../tournaments/tournaments.module').then(
+            (m) => m.TournamentsPageModule
+          ),
       },
       {
         path: '',

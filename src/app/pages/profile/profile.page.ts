@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,10 +8,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage implements OnInit {
+  constructor(private location: Location, private router: Router) {}
 
-  constructor() { }
+  ngOnInit() {}
 
-  ngOnInit() {
+  backButton() {
+    if (this.router.navigated) {
+      this.location.back();
+    } else {
+      this.router.navigate(['/']);
+    }
   }
-
 }

@@ -17,7 +17,12 @@
 <ion-content>
   <!-- welcome component -->
   <div class="welcome-wrapper">
-    <ion-item button *ngIf="(auth.user | async) as user" lines="none">
+    <ion-item
+      button
+      *ngIf="(auth.user | async) as user"
+      lines="none"
+      [routerLink]="'/tabs/players/' + user.id"
+    >
       <ion-label>
         <p>Welcome back,</p>
         <h1>{{ user.displayName }}</h1>

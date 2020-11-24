@@ -21,30 +21,36 @@ export class AuthService {
 
   constructor(
     private http: HttpClient,
-    private plt: Platform,
+    private platform: Platform,
     private jwtHelper: JwtHelperService
   ) {
-    this.loadStoredToken().subscribe();
+    this.loadStoredToken().subscribe(() => {
+      console.log(this.user.getValue());
+    });
   }
 
   loadStoredToken(): Observable<any> {
-    const platformObs = from(this.plt.ready());
-
-    return platformObs.pipe(
-      filter((val) => val !== null),
+    return from(this.platform.ready()).pipe(
       switchMap(() => from(Storage.get({ key: TOKEN_KEY }))),
-      map((token) => {
+      map(async (token) => {
         if (token && token.value) {
           const decodedToken = this.jwtHelper.decodeToken(token.value);
 
           if (this.jwtHelper.isTokenExpired(token.value)) {
+            // handle expired token
             console.log('TOKEN EXPIRED');
-            Storage.remove({ key: TOKEN_KEY });
+            this.isAuthenticated.next(false);
+            this.user.next(null);
+            await Storage.remove({ key: TOKEN_KEY });
           } else {
             console.log('user already logged in');
             this.user.next(decodedToken);
             this.isAuthenticated.next(true);
           }
+        } else {
+          this.isAuthenticated.next(false);
+          this.user.next(null);
+          await Storage.remove({ key: TOKEN_KEY });
         }
       })
     );
