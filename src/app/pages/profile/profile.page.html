@@ -1,12 +1,23 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-button (click)="backButton()">
-        <ion-icon slot="icon-only" name="chevron-back"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-    <ion-title>Profile</ion-title>
-  </ion-toolbar>
-</ion-header>
+<div class="top-wrapper">
+  <ion-buttons slot="start">
+    <ion-button (click)="dismiss()">
+      <ion-icon color="dark" slot="icon-only" name="chevron-back"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+  <ion-segment color="primary" mode="md" scrollable>
+    <ion-segment-button value="featured">
+      <ion-label>Overview</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="favorites">
+      <ion-label>Matches</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="news">
+      <ion-label>Heroes</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="news">
+      <ion-label>Items</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+</div>
 
-<ion-content class="ion-padding"> heloust </ion-content>
+<ion-content class="ion-padding"></ion-content>

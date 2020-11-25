@@ -1,6 +1,8 @@
 import { Router } from '@angular/router';
 import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { ProfilePage } from '../profile/profile.page';
 
 @Component({
   selector: 'app-home',
@@ -8,11 +10,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
-  constructor(public auth: AuthService, private router: Router) {}
+  constructor(
+    public auth: AuthService,
+    private router: Router,
+    private modalController: ModalController
+  ) {}
 
   ngOnInit() {}
 
-  openProfile(id) {
-    this.router.navigate([`/tabs/players/${id}`]);
+  async openProfile(user) {
+    const modal = await this.modalController.create({
+      component: ProfilePage,
+      componentProps: {
+        userId: user.id,
+      },
+      cssClass: 'profile-modal',
+    });
+    await modal.present();
+
+    const { data } = await modal.onWillDismiss();
+    console.log(data);
   }
 }
