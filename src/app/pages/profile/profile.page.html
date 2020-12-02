@@ -1,23 +1,112 @@
-<div class="top-wrapper">
-  <ion-buttons slot="start">
-    <ion-button (click)="dismiss()">
+<!-- <ion-buttons>
+  <ion-button slot="start" (click)="dismiss()">
+    <ion-icon color="dark" slot="icon-only" name="chevron-back"></ion-icon>
+  </ion-button>
+  <ion-button slot="end">
+    <ion-icon color="dark" slot="icon-only" name="ellipsis-vertical"></ion-icon>
+  </ion-button>
+</ion-buttons> -->
+<ion-toolbar>
+  <ion-buttons slot="start" (click)="dismiss()">
+    <ion-button>
       <ion-icon color="dark" slot="icon-only" name="chevron-back"></ion-icon>
     </ion-button>
   </ion-buttons>
-  <ion-segment color="primary" mode="md" scrollable>
-    <ion-segment-button value="featured">
-      <ion-label>Overview</ion-label>
-    </ion-segment-button>
-    <ion-segment-button value="favorites">
-      <ion-label>Matches</ion-label>
-    </ion-segment-button>
-    <ion-segment-button value="news">
-      <ion-label>Heroes</ion-label>
-    </ion-segment-button>
-    <ion-segment-button value="news">
-      <ion-label>Items</ion-label>
-    </ion-segment-button>
-  </ion-segment>
+  <ion-buttons slot="end">
+    <ion-button>
+      <ion-icon color="dark" slot="icon-only" name="heart-outline"></ion-icon>
+    </ion-button>
+    <ion-button>
+      <ion-icon
+        color="dark"
+        slot="icon-only"
+        name="ellipsis-vertical"
+      ></ion-icon>
+    </ion-button>
+  </ion-buttons>
+</ion-toolbar>
+
+<ion-img src="https://www.opendota.com/assets/images/vp-banner.jpg"></ion-img>
+
+<div class="grid-wrapper">
+  <ion-grid>
+    <ion-row class="ion-align-items-center">
+      <ion-col>
+        <ion-item size="6" lines="none">
+          <ion-thumbnail slot="start">
+            <img [src]="player.profile.avatarfull" />
+          </ion-thumbnail>
+          <ion-label>
+            <h1>{{ player.profile.personaname }}</h1>
+            <p>Overview</p>
+          </ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item lines="none">
+          <ion-thumbnail
+            style="
+              margin-left: auto;
+              margin-right: 5px;
+              width: 65px;
+              height: 65px;
+            "
+          >
+            <img
+              src="https://riki.dotabuff.com/c/e04a0e9d861e7eb382ee3fff930cb7fa881ec174/68747470733a2f2f7261772e67697468756275736572636f6e74656e742e636f6d2f646f7461627566662f70616e6f72616d612f6d61737465722f70616e6f72616d612f696d616765732f72616e6b5f746965725f69636f6e732f72616e6b38625f7073642e706e67"
+            />
+          </ion-thumbnail>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row class="records">
+      <ion-col>
+        <ion-item class="profile-record" lines="none">
+          <ion-label>
+            <h3>WINS</h3>
+            <h1 class="wins">2000</h1>
+          </ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item class="profile-record" lines="none">
+          <ion-label>
+            <h3>LOSSES</h3>
+            <h1 class="losses">1000</h1>
+          </ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item class="profile-record" lines="none">
+          <ion-label>
+            <h3>WINRATE</h3>
+            <h1 class="winrate">55.17%</h1>
+          </ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </div>
+
+<ion-segment
+  color="primary"
+  mode="md"
+  scrollable
+  (ionChange)="segmentChanged($event)"
+  [(ngModel)]="selectedTab"
+>
+  <ion-segment-button value="overview">
+    <ion-label>Overview</ion-label>
+  </ion-segment-button>
+  <ion-segment-button value="matches">
+    <ion-label>Matches</ion-label>
+  </ion-segment-button>
+  <ion-segment-button value="heroes">
+    <ion-label>Heroes</ion-label>
+  </ion-segment-button>
+  <ion-segment-button value="items">
+    <ion-label>Items</ion-label>
+  </ion-segment-button>
+</ion-segment>
 
 <ion-content class="ion-padding"></ion-content>

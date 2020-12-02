@@ -1,1 +1,45 @@
+:host {
+  background: var(--ion-color-light-shade);
+}
 
+ion-grid {
+  padding: 0px 10px;
+}
+
+ion-thumbnail {
+  --border-radius: 5px;
+}
+
+ion-img {
+  margin: 15px;
+}
+
+.profile-record {
+  text-align: center;
+  --background: rgba(0, 0, 0, 0.137);
+  border-radius: 5px;
+
+  h1 {
+    font-size: 21px;
+  }
+
+  h3 {
+    color: rgb(168, 168, 168);
+  }
+
+  .wins {
+    color: rgb(94, 190, 30);
+  }
+
+  .losses {
+    color: var(--ion-color-primary);
+  }
+
+  .winrate {
+    color: white;
+  }
+
+  ion-label {
+    margin: 8px 0px;
+  }
+}

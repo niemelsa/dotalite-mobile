@@ -12,6 +12,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ProfilePage implements OnInit {
   player: any;
+  selectedTab: any = 'overview';
 
   constructor(
     private location: Location,
@@ -39,5 +40,9 @@ export class ProfilePage implements OnInit {
         console.log(player);
         this.player = player;
       });
+  }
+
+  segmentChanged(event) {
+    console.log(event);
   }
 }
