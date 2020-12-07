@@ -2,7 +2,7 @@ import { Router } from '@angular/router';
 import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { ProfilePage } from '../profile/profile.page';
+import { SearchComponent } from '../../components/search/search.component';
 
 @Component({
   selector: 'app-home',
@@ -18,13 +18,11 @@ export class HomePage implements OnInit {
 
   ngOnInit() {}
 
-  async openProfile(user) {
+  async toggleSearch() {
+    // this.active = !this.active;
+    // console.log('active: ', this.active);
     const modal = await this.modalController.create({
-      component: ProfilePage,
-      componentProps: {
-        userId: user.id,
-      },
-      cssClass: 'player-modal',
+      component: SearchComponent,
     });
     await modal.present();
 

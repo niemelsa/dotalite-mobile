@@ -9,14 +9,17 @@ import { HomePageRoutingModule } from './home-routing.module';
 import { HomePage } from './home.page';
 import { TrendingComponent } from 'src/app/components/trending/trending.component';
 import { ShortcutComponent } from 'src/app/components/shortcut/shortcut.component';
+import { WelcomeComponent } from '../../components/welcome/welcome.component';
+import { SearchComponent } from '../../components/search/search.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    HomePageRoutingModule,
+  imports: [CommonModule, FormsModule, IonicModule, HomePageRoutingModule],
+  declarations: [
+    HomePage,
+    TrendingComponent,
+    ShortcutComponent,
+    WelcomeComponent,
+    SearchComponent,
   ],
-  declarations: [HomePage, TrendingComponent, ShortcutComponent]
 })
-export class HomePageModule { }
+export class HomePageModule {}

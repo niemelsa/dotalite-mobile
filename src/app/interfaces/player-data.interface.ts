@@ -1,7 +1,7 @@
 export interface PlayerData {
   profile: {
-    personaname;
-    avatarfull;
+    personaname: string;
+    avatarfull: string;
   };
   wins: number;
   losses: number;

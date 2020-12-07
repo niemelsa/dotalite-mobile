@@ -4,10 +4,10 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-buttons slot="end">
-      <ion-button icon-only>
+      <ion-button (click)="toggleSearch();">
         <ion-icon name="search"></ion-icon>
       </ion-button>
-      <ion-button icon-only>
+      <ion-button>
         <ion-icon name="notifications"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -16,22 +16,7 @@
 
 <ion-content>
   <!-- welcome component -->
-  <div class="welcome-wrapper">
-    <ion-item
-      button
-      *ngIf="(auth.user | async) as user"
-      (click)="openProfile(user)"
-      lines="none"
-    >
-      <ion-label>
-        <p>Welcome back,</p>
-        <h1>{{ user.displayName }}</h1>
-      </ion-label>
-      <ion-thumbnail style="--border-radius: 10px">
-        <img [src]="user.image" />
-      </ion-thumbnail>
-    </ion-item>
-  </div>
+  <app-welcome [user]="auth.user | async"></app-welcome>
 
   <!-- shortcut component -->
   <app-shortcut [user]="auth.user | async"></app-shortcut>

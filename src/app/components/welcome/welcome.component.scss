@@ -1,0 +1,15 @@
+:host {
+  background: var(--ion-color-light-shade);
+  padding: 0px 0px 10px 0px;
+}
+
+ion-item {
+  --background: var(--ion-color-light-shade);
+  border-radius: 10px;
+  margin: 0px 10px;
+
+}
+
+ion-thumbnail {
+  --border-radius: 10px;
+}

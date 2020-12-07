@@ -1,0 +1,14 @@
+<ion-item
+        button
+        *ngIf="(authService.user | async) as user"
+        (click)="playersService.openProfile(user.id)"
+        lines="none"
+>
+  <ion-label>
+    <p>Welcome back,</p>
+    <h1>{{ user.displayName }}</h1>
+  </ion-label>
+  <ion-thumbnail>
+    <img [src]="user.image" />
+  </ion-thumbnail>
+</ion-item>

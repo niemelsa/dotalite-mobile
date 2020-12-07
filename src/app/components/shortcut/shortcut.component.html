@@ -15,7 +15,7 @@
 </ion-list>
 
 <ion-list *ngIf="selectedTab == 'favorites'" lines="none">
-  <ion-item button *ngFor="let favorite of mockFavorites;">
+  <ion-item button *ngFor="let favorite of mockFavorites;" (click)="openFavorite(favorite)">
     <ion-thumbnail slot="start">
       <img [src]="favorite.image">
     </ion-thumbnail>
