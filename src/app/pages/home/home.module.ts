@@ -11,6 +11,7 @@ import { TrendingComponent } from 'src/app/components/trending/trending.componen
 import { ShortcutComponent } from 'src/app/components/shortcut/shortcut.component';
 import { WelcomeComponent } from '../../components/welcome/welcome.component';
 import { SearchComponent } from '../../components/search/search.component';
+import { NotificationsComponent } from '../../components/notifications/notifications.component';
 
 @NgModule({
   imports: [CommonModule, FormsModule, IonicModule, HomePageRoutingModule],
@@ -20,6 +21,7 @@ import { SearchComponent } from '../../components/search/search.component';
     ShortcutComponent,
     WelcomeComponent,
     SearchComponent,
+    NotificationsComponent,
   ],
 })
 export class HomePageModule {}

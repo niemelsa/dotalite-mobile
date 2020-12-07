@@ -42,3 +42,23 @@ ion-menu-button {
     background: var(--ion-color-light-shade);
   }
 }
+
+.notifications-popover {
+  .popover-content {
+
+    ion-list-header {
+      font-size: 16px;
+      font-weight: 500;
+
+      ion-label {
+        margin: 0px 0px 5px 0px;
+      }
+    }
+
+    ion-item, ion-list-header {
+      //--background: var(--ion-color-light-shade);
+      //padding: 5px;
+      --border-color: var(--ion-color-light-shade);
+    }
+  }
+}
