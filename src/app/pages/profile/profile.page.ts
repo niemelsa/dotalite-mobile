@@ -1,4 +1,5 @@
-import { Observable } from 'rxjs';
+import { PlayerData } from './../../interfaces/player-data.interface';
+import { Observable, Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
@@ -11,8 +12,8 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage implements OnInit {
-  player: any;
-  selectedTab: any = 'overview';
+  player: PlayerData = null;
+  selectedTab: any = 'Overview';
 
   constructor(
     private location: Location,
@@ -36,8 +37,7 @@ export class ProfilePage implements OnInit {
   getPlayerData() {
     return this.http
       .get(`http://localhost:3000/players/${this.userId}`)
-      .subscribe((player) => {
-        console.log(player);
+      .subscribe((player: PlayerData) => {
         this.player = player;
       });
   }
