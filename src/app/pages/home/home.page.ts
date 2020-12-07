@@ -24,7 +24,7 @@ export class HomePage implements OnInit {
       componentProps: {
         userId: user.id,
       },
-      cssClass: 'profile-modal',
+      cssClass: 'player-modal',
     });
     await modal.present();
 

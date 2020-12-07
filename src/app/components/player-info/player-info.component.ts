@@ -2,13 +2,13 @@ import { PlayerData } from '../../interfaces/player-data.interface';
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-profile-top-info',
-  templateUrl: './profile-top-info.component.html',
-  styleUrls: ['./profile-top-info.component.scss'],
+  selector: 'app-player-info',
+  templateUrl: './player-info.component.html',
+  styleUrls: ['./player-info.component.scss'],
 })
-export class ProfileTopInfoComponent implements OnInit {
+export class PlayerInfoComponent implements OnInit {
   @Input() player: PlayerData;
-  @Input() selected: string;
+  @Input() currentTab: string;
 
   constructor() {}
 

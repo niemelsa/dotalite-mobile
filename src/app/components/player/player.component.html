@@ -1,0 +1,20 @@
+<ng-container *ngIf="playerData as player; else loading">
+  <!-- ad component -->
+  <!--  <ion-img src="https://www.opendota.com/assets/images/vp-banner.jpg"></ion-img>-->
+
+  <!-- player info component -->
+  <app-player-info [player]="player" [currentTab]="selected"></app-player-info>
+
+  <!--  player segment menu and content-->
+  <app-player-content
+    [player]="player"
+    [currentTab]="selected"
+    (changeTab)="changeTab($event)"
+  ></app-player-content>
+</ng-container>
+
+<ng-template #loading>
+  <div class="spinner">
+    <ion-spinner name="crescent"></ion-spinner>
+  </div>
+</ng-template>

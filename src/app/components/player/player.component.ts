@@ -4,14 +4,14 @@ import { Component, Input, OnInit } from '@angular/core';
 import { takeWhile } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-profile-info',
-  templateUrl: './profile-top.component.html',
-  styleUrls: ['./profile-top.component.scss'],
+  selector: 'app-player',
+  templateUrl: './player.component.html',
+  styleUrls: ['./player.component.scss'],
 })
-export class ProfileTopComponent implements OnInit {
+export class PlayerComponent implements OnInit {
   private playerSubject = new BehaviorSubject<PlayerData>(null);
   playerData: PlayerData;
-  selectedTab = 'Overview';
+  selected = 'Overview';
 
   @Input()
   set data(value) {
@@ -28,7 +28,7 @@ export class ProfileTopComponent implements OnInit {
       });
   }
 
-  segmentChanged(event) {
-    console.log(event);
+  changeTab(newTab: string) {
+    this.selected = newTab;
   }
 }

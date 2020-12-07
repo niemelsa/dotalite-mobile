@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { ProfileTopComponent } from './profile-top.component';
+import { PlayerComponent } from './player.component';
 
 describe('ProfileInfoComponent', () => {
-  let component: ProfileTopComponent;
-  let fixture: ComponentFixture<ProfileTopComponent>;
+  let component: PlayerComponent;
+  let fixture: ComponentFixture<PlayerComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProfileTopComponent ],
+      declarations: [ PlayerComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ProfileTopComponent);
+    fixture = TestBed.createComponent(PlayerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

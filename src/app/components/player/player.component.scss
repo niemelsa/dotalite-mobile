@@ -6,11 +6,13 @@ ion-img {
   //   background: var(--ion-color-light);
   display: flex;
   justify-content: center;
-  padding: 50px;
+  margin-top: 25vh;
+  height: 100vh;
 
   ion-spinner {
     --color: var(--ion-color-dark);
     transform: scale(2);
     // margin-top: 30vh;
+
   }
 }
