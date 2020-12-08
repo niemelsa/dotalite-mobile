@@ -1,5 +1,4 @@
 import { PlayerInfoComponent } from '../../components/player-info/player-info.component';
-import { PlayerComponent } from '../../components/player/player.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -18,7 +17,6 @@ import { PlayerHeroesComponent } from '../../components/player-heroes/player-her
   imports: [CommonModule, FormsModule, IonicModule, ProfilePageRoutingModule],
   declarations: [
     ProfilePage,
-    PlayerComponent,
     PlayerInfoComponent,
     PlayerContentComponent,
     PlayerOverviewComponent,

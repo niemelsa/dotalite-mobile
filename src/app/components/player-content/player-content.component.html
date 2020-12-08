@@ -1,28 +1,14 @@
-<ion-segment
-        color="primary"
-        mode="md"
-        scrollable
-        (ionChange)="segmentChanged($event)"
-        [(ngModel)]="currentTab"
->
-  <ion-segment-button value="Overview">
-    <ion-label>Overview</ion-label>
-  </ion-segment-button>
-  <ion-segment-button value="Matches">
-    <ion-label>Matches</ion-label>
-  </ion-segment-button>
-  <ion-segment-button value="Heroes">
-    <ion-label>Heroes</ion-label>
-  </ion-segment-button>
-  <ion-segment-button value="Items">
-    <ion-label>Items</ion-label>
-  </ion-segment-button>
-</ion-segment>
+<app-player-overview
+  [player]="player"
+  *ngIf="selected === 'Overview'"
+></app-player-overview>
 
+<app-player-matches
+  [player]="player"
+  *ngIf="selected === 'Matches'"
+></app-player-matches>
 
-<div class="ion-padding">
-  <app-player-overview [player]="player" *ngIf="currentTab === 'Overview'"></app-player-overview>
-  <app-player-matches [player]="player" *ngIf="currentTab === 'Matches'"></app-player-matches>
-  <app-player-heroes [player]="player" *ngIf="currentTab === 'Heroes'"></app-player-heroes>
-</div>
-
+<app-player-heroes
+  [player]="player"
+  *ngIf="selected === 'Heroes'"
+></app-player-heroes>

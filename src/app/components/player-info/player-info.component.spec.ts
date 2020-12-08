@@ -3,14 +3,14 @@ import { IonicModule } from '@ionic/angular';
 
 import { PlayerInfoComponent } from './player-info.component';
 
-describe('ProfileTopInfoComponent', () => {
+describe('ProfileInfoComponent', () => {
   let component: PlayerInfoComponent;
   let fixture: ComponentFixture<PlayerInfoComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PlayerInfoComponent ],
-      imports: [IonicModule.forRoot()]
+      declarations: [PlayerInfoComponent],
+      imports: [IonicModule.forRoot()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(PlayerInfoComponent);

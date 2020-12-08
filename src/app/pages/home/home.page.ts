@@ -21,8 +21,6 @@ export class HomePage implements OnInit {
   ngOnInit() {}
 
   async toggleSearch() {
-    // this.active = !this.active;
-    // console.log('active: ', this.active);
     const modal = await this.modalController.create({
       component: SearchComponent,
     });

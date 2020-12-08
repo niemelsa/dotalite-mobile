@@ -7,16 +7,10 @@ import { PlayerData } from '../../interfaces/player-data.interface';
   styleUrls: ['./player-content.component.scss'],
 })
 export class PlayerContentComponent implements OnInit {
-  @Input() currentTab: string;
+  @Input() selected: string;
   @Input() player: PlayerData;
-  @Output() changeTab = new EventEmitter<string>();
 
   constructor() {}
 
   ngOnInit() {}
-
-  segmentChanged(event) {
-    const tab = event.detail.value;
-    this.changeTab.emit(tab);
-  }
 }

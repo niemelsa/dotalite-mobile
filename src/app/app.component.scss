@@ -4,6 +4,10 @@ ion-list-header {
     font-size: 1.2em;
 }
 
+ion-split-pane {
+
+}
+
 ion-item {
     --ripple-color: transparent;
     --background-activated: transparent;
@@ -28,6 +32,10 @@ ion-item.selected {
     ion-icon {
         color: var(--ion-color-primary);
     }
+}
+
+ion-menu {
+    --background: red;
 }
 
 ion-menu ion-list:not(:last-of-type) {

@@ -18,6 +18,23 @@
   </ion-buttons>
 </ion-toolbar>
 
-<app-player [data]="player"></app-player>
+<ng-container *ngIf="player; else loading">
+  <app-player-info
+    [player]="player"
+    [selected]="selectedTab"
+    (changeTab)="handleTabChanged($event)"
+  ></app-player-info>
 
-<ion-content class="ion-padding"> </ion-content>
+  <ion-content class="ion-padding">
+    <app-player-content
+      [player]="player"
+      [selected]="selectedTab"
+    ></app-player-content>
+  </ion-content>
+</ng-container>
+
+<ng-template #loading>
+  <div class="spinner">
+    <ion-spinner name="crescent"></ion-spinner>
+  </div>
+</ng-template>

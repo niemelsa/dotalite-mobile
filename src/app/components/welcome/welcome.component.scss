@@ -4,10 +4,15 @@
 }
 
 ion-item {
-  --background: var(--ion-color-light-shade);
+  --background: transparent;
+  //--background: var(--ion-color-light);
   border-radius: 10px;
   margin: 0px 10px;
+  //border: 1px solid var(--ion-color-light);
 
+  ion-label {
+    padding: 5px;
+  }
 }
 
 ion-thumbnail {

@@ -1,3 +1,8 @@
+
+ion-img {
+  margin: 15px;
+}
+
 .profile-record {
   text-align: center;
   --background: rgba(0, 0, 0, 0.137);
@@ -24,12 +29,12 @@
   }
 
   ion-label {
-    margin: 8px 0px;
+    margin: 8px 0;
   }
 }
 
 ion-grid {
-  padding: 0px 10px;
+  padding: 0 10px;
 
   ion-thumbnail {
     --border-radius: 5px;

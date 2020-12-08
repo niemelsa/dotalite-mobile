@@ -1,5 +1,4 @@
-import { PlayerData } from './../../interfaces/player-data.interface';
-import { Observable, Subscription } from 'rxjs';
+import { PlayerData } from '../../interfaces/player-data.interface';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
@@ -9,11 +8,10 @@ import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-profile-page',
   templateUrl: './profile.page.html',
-  styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage implements OnInit {
-  player: PlayerData = null;
-  selectedTab: any = 'Overview';
+  player: PlayerData;
+  selectedTab = 'Overview';
 
   constructor(
     private location: Location,
@@ -37,12 +35,10 @@ export class ProfilePage implements OnInit {
   getPlayerData() {
     return this.http
       .get(`http://localhost:3000/players/${this.userId}`)
-      .subscribe((player: PlayerData) => {
-        this.player = player;
-      });
+      .subscribe((player: PlayerData) => (this.player = player));
   }
 
-  segmentChanged(event) {
-    console.log(event);
+  handleTabChanged(newTab: string) {
+    this.selectedTab = newTab;
   }
 }
