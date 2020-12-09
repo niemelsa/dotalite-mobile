@@ -23,6 +23,7 @@ export class HomePage implements OnInit {
   async toggleSearch() {
     const modal = await this.modalController.create({
       component: SearchComponent,
+      cssClass: 'search-modal',
     });
     await modal.present();
 
