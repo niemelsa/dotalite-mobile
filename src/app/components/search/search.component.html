@@ -1,9 +1,3 @@
-<!--<ion-toolbar>-->
-<!--  <ion-buttons slot="end" (click)="dismiss()">-->
-<!--      <ion-icon button color="dark" name="close"></ion-icon>-->
-<!--  </ion-buttons>-->
-<!--</ion-toolbar>-->
-
 <ion-header mode="ios" translucent="true" class="ion-no-border">
   <ion-toolbar>
     <ion-buttons slot="end">
@@ -14,63 +8,63 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-item lines="none">
+<ion-item class="searchbar-item" lines="none">
   <ion-label position="stacked" class="ion-padding-horizontal">
     Search
   </ion-label>
-  <!--    <ion-input></ion-input>-->
-  <ion-searchbar placeholder="Type to start searching"></ion-searchbar>
+  <ion-searchbar
+    debounce="1000"
+    (ionInput)="handleInput($event)"
+    (ionChange)="handleSearch($event)"
+    placeholder="Type to start searching"
+  ></ion-searchbar>
 </ion-item>
 
-<!--<ion-segment mode="ios" scrollable value="heart" class="ion-padding-horizontal">-->
-<!--  <div class="button-wrapper">-->
-<!--    <ion-segment-button value="home">-->
-<!--      <ion-icon name="home"></ion-icon>-->
-<!--    </ion-segment-button>-->
-<!--  </div>-->
-<!--    <div class="button-wrapper">-->
-<!--        <ion-segment-button value="heart">-->
-<!--            <ion-icon name="heart"></ion-icon>-->
-<!--        </ion-segment-button>-->
-<!--    </div>-->
-<!--    <div class="button-wrapper">-->
-<!--        <ion-segment-button value="pin">-->
-<!--            <ion-icon name="pin"></ion-icon>-->
-<!--        </ion-segment-button>-->
-<!--    </div>-->
-<!--    <div class="button-wrapper">-->
-<!--        <ion-segment-button value="star">-->
-<!--            <ion-icon name="star"></ion-icon>-->
-<!--        </ion-segment-button>-->
-<!--    </div>-->
-<!--    <div class="button-wrapper">-->
-<!--        <ion-segment-button value="call">-->
-<!--            <ion-icon name="call"></ion-icon>-->
-<!--        </ion-segment-button>-->
-<!--    </div>-->
-<!--    <div class="button-wrapper">-->
-<!--        <ion-segment-button value="globe">-->
-<!--            <ion-icon name="globe"></ion-icon>-->
-<!--        </ion-segment-button>-->
-<!--    </div>-->
-<!--  <ion-segment-button value="heart">-->
-<!--    <ion-icon name="heart"></ion-icon>-->
-<!--  </ion-segment-button>-->
-<!--  <ion-segment-button value="pin">-->
-<!--    <ion-icon name="pin"></ion-icon>-->
-<!--  </ion-segment-button>-->
-<!--  <ion-segment-button value="star">-->
-<!--    <ion-icon name="star"></ion-icon>-->
-<!--  </ion-segment-button>-->
-<!--  <ion-segment-button value="call">-->
-<!--    <ion-icon name="call"></ion-icon>-->
-<!--  </ion-segment-button>-->
-<!--  <ion-segment-button value="globe">-->
-<!--    <ion-icon name="globe"></ion-icon>-->
-<!--  </ion-segment-button>-->
-<!--  <ion-segment-button value="basket">-->
-<!--    <ion-icon name="basket"></ion-icon>-->
-<!--  </ion-segment-button>-->
-<!--</ion-segment>-->
+<ion-content class="ion-padding-horizontal">
+  <ng-container *ngIf="search.searchResults | async as results; else loading">
+    <ion-list *ngIf="search.players && search.players.length">
+      <ion-item class="search-result-header" lines="none">
+        <ion-label>Players</ion-label>
+      </ion-item>
+      <ion-item
+        class="search-result-item"
+        lines="none"
+        *ngFor="let player of search.players"
+      >
+        <ion-label
+          ><h3>{{ player.name }}</h3>
+          <p>Last online #</p></ion-label
+        >
+        <ion-thumbnail slot="start">
+          <img [src]="avatarPrefix + player.avatar" />
+        </ion-thumbnail>
+      </ion-item>
+    </ion-list>
 
-<ion-content class="ion-padding"> </ion-content>
+    <ion-list *ngIf="search.teams && search.teams.length">
+      <ion-item class="search-result-header" lines="none">
+        <ion-label>Teams</ion-label>
+      </ion-item>
+      <ion-item
+              class="search-result-item"
+              lines="none"
+              *ngFor="let team of search.teams"
+      >
+        <ion-label
+        ><h3>{{ team.name }}</h3>
+          <p>Last online #</p></ion-label
+        >
+        <ion-thumbnail slot="start">
+          <img [src]="team.logo" />
+        </ion-thumbnail>
+      </ion-item>
+    </ion-list>
+
+  </ng-container>
+
+  <ng-template #loading>
+    <div class="spinner" *ngIf="searchInProgress">
+      <ion-spinner name="crescent"></ion-spinner>
+    </div>
+  </ng-template>
+</ion-content>

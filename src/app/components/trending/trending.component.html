@@ -1,10 +1,3 @@
-<!-- <ion-item class="home-header" lines="none">
-  <ion-label>
-    Trending
-  </ion-label>
-  <ion-icon slot="end" name="chevron-forward"></ion-icon>
-</ion-item> -->
-
 <ion-slides [options]="slideOpts" class="ion-padding-horizontal">
   <ion-slide *ngFor="let item of mockTrending;">
     <ion-card button class="ion-text-left" [ngStyle]="styleCard(item)">

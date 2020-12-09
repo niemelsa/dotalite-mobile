@@ -1,57 +1,38 @@
 ion-searchbar {
-  margin: 25px 0;
+  margin: 25px 0 5px 0;
   --border-radius: 10px;
 }
 
-ion-item {
-  //--background: var(--ion-color-light-shade);
-  //border-bottom: 1px solid var(--ion-color-primary);
+//ion-list-header {
+//  font-size: 24px;
+//}
 
+.search-result-item {
+  --background: var(--ion-color-light-shade);
+  --border-radius:5px;
+  margin-bottom: 5px;
+
+  ion-thumbnail {
+    --border-radius: 5px;
+  }
+}
+
+.search-result-header {
+  font-size: 20px;
+  --color: #dedede;
+  font-weight: 500;
+  --detail-icon-font-size: 24px;
+  --detail-icon-color: #dedede;
+  --detail-icon-opacity: 100;
+}
+
+.searchbar-item {
   ion-label {
     font-size: 40px;
-    //margin-bot: 10px;
     --color: #dedede;
     font-weight: 500;
   }
 }
-
-ion-segment {
-  --background: none;
-}
-
-ion-segment-button {
-  --border-color: red;
-  --border-style: solid;
-  --border-radius: 1px;
-  //--background: none;
-  //--background-checked: none;
-  ////--border-radius: 50%;
-  ////--min-width: auto;
-  //--color: var(--ion-color-light-shade);
-  //--color-checked: var(--ion-color-primary);
-  //--indicator-color: transparent;
-  //--indicator-color-checked: transparent;
-}
-
-.button-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 55px;
-  height: 55px;
-  border-radius: 50%;
-  margin: 0 10px;
-  background: #24242f;
-
-  ion-icon {
-    font-size: 32px;
-  }
-}
-
-//ion-icon {
-//  font-size: 32px;
-//  //margin: 5px;
-//}
 
 ion-content {
   --background: transparent;
