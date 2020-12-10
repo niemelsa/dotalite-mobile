@@ -12,9 +12,17 @@ import { ShortcutComponent } from 'src/app/components/shortcut/shortcut.componen
 import { WelcomeComponent } from '../../components/welcome/welcome.component';
 import { SearchComponent } from '../../components/search/search.component';
 import { NotificationsComponent } from '../../components/notifications/notifications.component';
+import { SearchResultsComponent } from '../../components/search-results/search-results.component';
+import { PipesModule } from '../../pipes/pipes.module';
 
 @NgModule({
-  imports: [CommonModule, FormsModule, IonicModule, HomePageRoutingModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    IonicModule,
+    HomePageRoutingModule,
+    PipesModule,
+  ],
   declarations: [
     HomePage,
     TrendingComponent,
@@ -22,6 +30,7 @@ import { NotificationsComponent } from '../../components/notifications/notificat
     WelcomeComponent,
     SearchComponent,
     NotificationsComponent,
+    SearchResultsComponent,
   ],
 })
 export class HomePageModule {}

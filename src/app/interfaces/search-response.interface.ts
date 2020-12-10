@@ -1,10 +1,9 @@
 export interface SearchResponse {
-  players?: Player[];
-  teams?: Team[];
-  guild: Guild;
-  tournaments?: Tournament[];
-  matches?: Match[];
-  proPlayers?: ProPlayer[];
+  players: Player[];
+  teams: Team[];
+  tournaments: Tournament[];
+  matches: Match[];
+  proPlayers: ProPlayer[];
 }
 
 export interface Player {
@@ -76,29 +75,4 @@ export interface Match {
   players: any[];
   analysisOutcome: number;
   predictedOutcomeWeight: number;
-}
-
-export interface Guild {
-  id: number;
-  motd: string;
-  name: string;
-  tag: string;
-  createdDateTime: string;
-  language: number;
-  flags: number;
-  logo: string;
-  region: number;
-  description: string;
-  requiredRank: number;
-  primaryColor: number;
-  secondaryColor: number;
-  pattern: number;
-  points: number;
-  pastWeeklyRank: number;
-  pastWeeklyPercentile: number;
-  currentPercentile: number;
-  memberCount: number;
-  rank: number;
-  totalBattlePassLevels: number;
-  lastUpdateDateTime: string;
 }

@@ -1,0 +1,18 @@
+.search-result-item {
+  --background: var(--ion-color-light-shade);
+  --border-radius:5px;
+  margin-bottom: 5px;
+
+  ion-thumbnail {
+    --border-radius: 5px;
+  }
+}
+
+.search-result-header {
+  font-size: 20px;
+  --color: #dedede;
+  font-weight: 500;
+  --detail-icon-font-size: 24px;
+  --detail-icon-color: #dedede;
+  --detail-icon-opacity: 100;
+}

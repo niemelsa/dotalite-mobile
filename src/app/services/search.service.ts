@@ -9,7 +9,9 @@ import { SearchResponse } from '../interfaces/search-response.interface';
 })
 export class SearchService {
   apiUrl = 'http://localhost:3000/';
-  searchResults: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+  searchResults: BehaviorSubject<SearchResponse> = new BehaviorSubject<SearchResponse>(
+    null
+  );
   filteredResults: SearchResponse = {} as any;
 
   constructor(private http: HttpClient) {}

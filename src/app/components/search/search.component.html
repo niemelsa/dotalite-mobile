@@ -21,46 +21,11 @@
 </ion-item>
 
 <ion-content class="ion-padding-horizontal">
-  <ng-container *ngIf="search.searchResults | async as results; else loading">
-    <ion-list *ngIf="search.filteredResults.players as players">
-      <ion-item class="search-result-header" lines="none">
-        <ion-label>Players</ion-label>
-      </ion-item>
-      <ion-item
-        class="search-result-item"
-        lines="none"
-        *ngFor="let player of players"
-      >
-        <ion-label
-          ><h3>{{ player.personaname }}</h3>
-          <p>Last online #</p></ion-label
-        >
-        <ion-thumbnail slot="start">
-          <img [src]="player.avatarfull" />
-        </ion-thumbnail>
-      </ion-item>
-    </ion-list>
-
-    <ion-list *ngIf="search.filteredResults.teams as teams">
-      <ion-item class="search-result-header" lines="none">
-        <ion-label>Teams</ion-label>
-      </ion-item>
-      <ion-item
-              class="search-result-item"
-              lines="none"
-              *ngFor="let team of teams"
-      >
-        <ion-label
-        ><h3>{{ team.name }}</h3>
-          <p>Last online #</p></ion-label
-        >
-        <ion-thumbnail slot="start">
-          <img [src]="team.logo" />
-        </ion-thumbnail>
-      </ion-item>
-    </ion-list>
-
-  </ng-container>
+  <app-search-results
+    *ngIf="search.searchResults | async as results; else loading"
+    [results]="results"
+  >
+  </app-search-results>
 
   <ng-template #loading>
     <div class="spinner" *ngIf="searchInProgress">
