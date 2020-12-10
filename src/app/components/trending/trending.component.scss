@@ -1,29 +1,29 @@
 ion-card {
-    max-width: 150px;
-    margin: 0;
-    margin-right: 10px;
-    
-    ion-card-header {
-        position: absolute;
-        bottom: 0px;
+  max-width: 150px;
+  margin: 0;
+  margin-right: 10px;
 
-        ion-card-subtitle {
-            margin: 0;
-        }
+  ion-card-header {
+    position: absolute;
+    bottom: 0px;
+
+    ion-card-subtitle {
+      margin: 0;
     }
+  }
 }
 
 ion-slides {
-    margin-bottom: 20px;
-    padding-top: 10px;
+  margin-bottom: 20px;
+  padding-top: 10px;
 }
 
 ion-slide {
-    width: auto;
+  width: auto;
 }
 
 ion-item.home-header {
-    font-weight: 400;
-    font-size: 20px;
-    --background: transparent;
+  font-weight: 400;
+  font-size: 20px;
+  --background: transparent;
 }

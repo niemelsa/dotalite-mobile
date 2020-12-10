@@ -8,8 +8,26 @@ import { SearchService } from '../../services/search.service';
   styleUrls: ['./search.component.scss'],
 })
 export class SearchComponent implements OnInit, OnDestroy {
-  selectedTab = 'players';
+  selectedTab = 'Players';
   searchInProgress: boolean;
+  slideOpts = {
+    slidesPerView: 'auto',
+    spaceBetween: '10',
+  };
+  slides = [
+    {
+      title: 'Players',
+    },
+    {
+      title: 'Matches',
+    },
+    {
+      title: 'Teams',
+    },
+    {
+      title: 'Tournaments',
+    },
+  ];
 
   constructor(
     private modalCtrl: ModalController,
@@ -45,4 +63,6 @@ export class SearchComponent implements OnInit, OnDestroy {
       this.search.searchResults.next(null);
     }
   }
+
+  segmentChanged(event) {}
 }

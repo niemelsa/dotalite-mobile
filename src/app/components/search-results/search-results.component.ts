@@ -9,6 +9,7 @@ import { PlayersService } from '../../services/players.service';
 })
 export class SearchResultsComponent implements OnInit {
   @Input() results: SearchResponse;
+  @Input() selected: string;
 
   constructor(public playersService: PlayersService) {}
 

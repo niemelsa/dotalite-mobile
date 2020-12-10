@@ -20,6 +20,17 @@
   ></ion-searchbar>
 </ion-item>
 
+<ion-list lines="none">
+  <ion-slides [options]="slideOpts" class="ion-padding-horizontal">
+    <ion-slide *ngFor="let element of slides">
+      <ion-chip [attr.outline]="element.title !== selectedTab" color="primary">
+        <ion-icon name="pin"></ion-icon>
+        <ion-label>{{ element.title }}</ion-label>
+      </ion-chip>
+    </ion-slide>
+  </ion-slides>
+</ion-list>
+
 <ion-content class="ion-padding-horizontal">
   <app-search-results
     *ngIf="search.searchResults | async as results; else loading"

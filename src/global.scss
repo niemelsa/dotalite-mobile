@@ -54,7 +54,6 @@ ion-menu-button {
         --color: var(--ion-color-dark);
         transform: scale(2);
         // margin-top: 30vh;
-
       }
     }
 
@@ -69,7 +68,6 @@ ion-menu-button {
 
 .notifications-popover {
   .popover-content {
-
     ion-list-header {
       font-size: 16px;
       font-weight: 500;
@@ -79,7 +77,8 @@ ion-menu-button {
       }
     }
 
-    ion-item, ion-list-header {
+    ion-item,
+    ion-list-header {
       //--background: var(--ion-color-light-shade);
       //padding: 5px;
       --border-color: var(--ion-color-light-shade);
@@ -103,7 +102,12 @@ ion-menu-button {
         --color: var(--ion-color-dark);
         transform: scale(2);
         // margin-top: 30vh;
+      }
+    }
 
+    ion-segment {
+      ion-segment-button {
+        --background: var(--ion-color-light-shade);
       }
     }
   }
