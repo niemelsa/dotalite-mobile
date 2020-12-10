@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'FilterArray',
+  name: 'filterArray',
 })
 export class FilterArrayPipe implements PipeTransform {
   transform(value: any[], amount: number = 5): any[] {

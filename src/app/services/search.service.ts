@@ -12,7 +12,6 @@ export class SearchService {
   searchResults: BehaviorSubject<SearchResponse> = new BehaviorSubject<SearchResponse>(
     null
   );
-  filteredResults: SearchResponse = {} as any;
 
   constructor(private http: HttpClient) {}
 
@@ -21,21 +20,6 @@ export class SearchService {
 
     return this.http
       .get(request)
-      .pipe(
-        tap((results: SearchResponse) => {
-          for (const [key, value] of Object.entries(results)) {
-            if (value instanceof Array) {
-              this.filteredResults[key] = value.filter(
-                (el, index) => index < 5
-              );
-            } else {
-              this.filteredResults[key] = value;
-            }
-          }
-
-          this.searchResults.next(results);
-        })
-      )
-      .subscribe();
+      .subscribe((results: SearchResponse) => this.searchResults.next(results));
   }
 }

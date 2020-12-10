@@ -1,4 +1,4 @@
-<ion-list *ngIf="(results.players | FilterArray) as players">
+<ion-list *ngIf="(results.players | filterArray) as players">
   <ion-item class="search-result-header" lines="none">
     <ion-label>Players</ion-label>
   </ion-item>
@@ -14,12 +14,12 @@
       <p>{{ player.account_id }}</p></ion-label
     >
     <ion-thumbnail slot="start">
-      <img [src]="player.avatarfull" alt="player-avatar" />
+      <img [src]="player.avatarfull | defaultImage" alt="player-avatar" />
     </ion-thumbnail>
   </ion-item>
 </ion-list>
 
-<ion-list *ngIf="(results.teams | FilterArray) as teams">
+<ion-list *ngIf="(results.teams | filterArray) as teams">
   <ion-item class="search-result-header" lines="none">
     <ion-label>Teams</ion-label>
   </ion-item>
@@ -34,7 +34,7 @@
   </ion-item>
 </ion-list>
 
-<ion-list *ngIf="(results.tournaments | FilterArray) as tournaments">
+<ion-list *ngIf="(results.tournaments | filterArray) as tournaments">
   <ion-item class="search-result-header" lines="none">
     <ion-label>Tournaments</ion-label>
   </ion-item>
@@ -53,7 +53,7 @@
   </ion-item>
 </ion-list>
 
-<ion-list *ngIf="(results.matches | FilterArray) as matches">
+<ion-list *ngIf="(results.matches | filterArray) as matches">
   <ion-item class="search-result-header" lines="none">
     <ion-label>Matches</ion-label>
   </ion-item>

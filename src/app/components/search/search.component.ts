@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { SearchService } from '../../services/search.service';
 
@@ -7,9 +7,7 @@ import { SearchService } from '../../services/search.service';
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss'],
 })
-export class SearchComponent implements OnInit {
-  avatarPrefix =
-    'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/';
+export class SearchComponent implements OnInit, OnDestroy {
   selectedTab = 'players';
   searchInProgress: boolean;
 
@@ -19,6 +17,10 @@ export class SearchComponent implements OnInit {
   ) {}
 
   ngOnInit() {}
+
+  ngOnDestroy() {
+    this.search.searchResults.next(null);
+  }
 
   dismiss() {
     this.modalCtrl.dismiss({
