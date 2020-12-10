@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
+import { SearchResponse } from '../interfaces/search-response.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SearchService {
-  searchResults: BehaviorSubject<any> = new BehaviorSubject<any>(null);
-  players: Array<any>;
-  teams: Array<any>;
   apiUrl = 'http://localhost:3000/';
+  searchResults: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+  filteredResults: SearchResponse = {} as any;
 
   constructor(private http: HttpClient) {}
 
@@ -20,10 +20,17 @@ export class SearchService {
     return this.http
       .get(request)
       .pipe(
-        map(({ results }: any) => results),
-        tap((results) => {
-          this.players = results.players.filter((player, index) => index < 5);
-          this.teams = results.teams.filter((team, index) => index < 5);
+        tap((results: SearchResponse) => {
+          for (const [key, value] of Object.entries(results)) {
+            if (value instanceof Array) {
+              this.filteredResults[key] = value.filter(
+                (el, index) => index < 5
+              );
+            } else {
+              this.filteredResults[key] = value;
+            }
+          }
+
           this.searchResults.next(results);
         })
       )
