@@ -15,17 +15,25 @@ ion-content {
   --background: transparent;
 }
 
-// ion-slide {
-//   ion-item {
-//     background: red;
-//   }
-// }
+.chip-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 5px;
 
-ion-slides {
-  margin-bottom: 20px;
-  padding-top: 10px;
-}
+  ion-chip {
+    border: 1px solid transparent;
+    background: rgb(255, 255, 255, 0.01);
+    --color: rgb(255, 255, 255, 0.3);
 
-ion-slide {
-  width: auto;
+    ion-icon {
+      color: inherit;
+    }
+
+    &.active {
+      border: 1px solid var(--ion-color-primary-shade);
+      background: rgb(203, 30, 53, 0.1);
+      --color: var(--ion-color-primary);
+    }
+  }
 }

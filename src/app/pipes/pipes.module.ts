@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DefaultImagePipe } from './default-image.pipe';
 import { FilterArrayPipe } from './filter-array.pipe';
+import { ValidateImagePipe } from './validate-image.pipe';
 
 @NgModule({
-  declarations: [DefaultImagePipe, FilterArrayPipe],
+  declarations: [FilterArrayPipe, ValidateImagePipe],
   imports: [CommonModule],
-  exports: [DefaultImagePipe, FilterArrayPipe],
+  exports: [FilterArrayPipe, ValidateImagePipe],
 })
 export class PipesModule {}

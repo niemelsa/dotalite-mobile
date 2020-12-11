@@ -8,25 +8,14 @@ import { SearchService } from '../../services/search.service';
   styleUrls: ['./search.component.scss'],
 })
 export class SearchComponent implements OnInit, OnDestroy {
-  selectedTab = 'Players';
+  selectedFilter: string;
   searchInProgress: boolean;
-  slideOpts = {
-    slidesPerView: 'auto',
-    spaceBetween: '10',
-  };
-  slides = [
-    {
-      title: 'Players',
-    },
-    {
-      title: 'Matches',
-    },
-    {
-      title: 'Teams',
-    },
-    {
-      title: 'Tournaments',
-    },
+  filters = [
+    { title: 'Players', icon: 'people' },
+    { title: 'Teams', icon: 'apps' },
+    { title: 'Matches', icon: 'layers' },
+    { title: 'Tournaments', icon: 'trophy' },
+    { title: 'Pro Players', icon: 'star' },
   ];
 
   constructor(
@@ -34,7 +23,9 @@ export class SearchComponent implements OnInit, OnDestroy {
     public search: SearchService
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.selectedFilter = this.filters[0].title;
+  }
 
   ngOnDestroy() {
     this.search.searchResults.next(null);
@@ -64,5 +55,8 @@ export class SearchComponent implements OnInit, OnDestroy {
     }
   }
 
-  segmentChanged(event) {}
+  changeFilter(event) {
+    this.selectedFilter =
+      event.target.textContent || event.target.parentElement.textContent;
+  }
 }

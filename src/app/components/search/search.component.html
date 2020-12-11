@@ -20,21 +20,22 @@
   ></ion-searchbar>
 </ion-item>
 
-<ion-list lines="none">
-  <ion-slides [options]="slideOpts" class="ion-padding-horizontal">
-    <ion-slide *ngFor="let element of slides">
-      <ion-chip [attr.outline]="element.title !== selectedTab" color="primary">
-        <ion-icon name="pin"></ion-icon>
-        <ion-label>{{ element.title }}</ion-label>
-      </ion-chip>
-    </ion-slide>
-  </ion-slides>
-</ion-list>
+<div class="ion-padding-horizontal chip-wrapper">
+  <ion-chip
+    *ngFor="let element of filters"
+    [class.active]="element.title === selectedFilter"
+    (click)="changeFilter($event)"
+  >
+    <ion-icon [name]="element.icon"></ion-icon>
+    <ion-label>{{ element.title }}</ion-label>
+  </ion-chip>
+</div>
 
 <ion-content class="ion-padding-horizontal">
   <app-search-results
     *ngIf="search.searchResults | async as results; else loading"
     [results]="results"
+    [selected]="selectedFilter"
   >
   </app-search-results>
 

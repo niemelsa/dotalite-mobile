@@ -1,70 +1,112 @@
-<ion-list *ngIf="(results.players | filterArray) as players">
-  <ion-item class="search-result-header" lines="none">
-    <ion-label>Players</ion-label>
-  </ion-item>
-  <ion-item
-    button
-    class="search-result-item"
-    lines="none"
-    *ngFor="let player of players"
-    (click)="playersService.openProfile(player.account_id)"
-  >
-    <ion-label
-      ><h3>{{ player.personaname }}</h3>
-      <p>{{ player.account_id }}</p></ion-label
+<ng-container *ngIf="selected === 'Players'">
+  <ion-list *ngIf="results.players | filterArray: 50 as players; else notFound">
+    <ion-item
+      button
+      class="search-result-item"
+      lines="none"
+      *ngFor="let player of players"
+      (click)="playersService.openProfile(player.account_id)"
     >
-    <ion-thumbnail slot="start">
-      <img [src]="player.avatarfull | defaultImage" alt="player-avatar" />
-    </ion-thumbnail>
-  </ion-item>
-</ion-list>
+      <ion-label
+        ><h3>{{ player.personaname }}</h3>
+        <p>{{ player.account_id }}</p></ion-label
+      >
+      <ion-thumbnail slot="start">
+        <img [src]="player.avatarfull | validateImage" alt="player-avatar" />
+      </ion-thumbnail>
+    </ion-item>
+  </ion-list>
+</ng-container>
 
-<ion-list *ngIf="(results.teams | filterArray) as teams">
-  <ion-item class="search-result-header" lines="none">
-    <ion-label>Teams</ion-label>
-  </ion-item>
-  <ion-item class="search-result-item" lines="none" *ngFor="let team of teams">
-    <ion-label
-      ><h3>{{ team.name }}</h3>
-      <p>{{ team.logo }}</p></ion-label
+<ng-container *ngIf="selected === 'Teams'">
+  <ion-list *ngIf="results.teams | filterArray as teams; else notFound">
+    <ion-item
+      class="search-result-item"
+      lines="none"
+      *ngFor="let team of teams"
     >
-    <ion-thumbnail slot="start">
-      <img [src]="team.logo | defaultImage" alt="team-logo" />
-    </ion-thumbnail>
-  </ion-item>
-</ion-list>
+      <ion-label
+        ><h3>{{ team.name }}</h3>
+        <p>{{ team.logo }}</p></ion-label
+      >
+      <ion-thumbnail slot="start">
+        <img [src]="team.logo | validateImage" alt="team-logo" />
+      </ion-thumbnail>
+    </ion-item>
+  </ion-list>
+</ng-container>
 
-<ion-list *ngIf="(results.tournaments | filterArray) as tournaments">
-  <ion-item class="search-result-header" lines="none">
-    <ion-label>Tournaments</ion-label>
-  </ion-item>
-  <ion-item
-    class="search-result-item"
-    lines="none"
-    *ngFor="let tournament of tournaments"
+<ng-container *ngIf="selected === 'Tournaments'">
+  <ion-list
+    *ngIf="results.tournaments | filterArray as tournaments; else notFound"
   >
-    <ion-label
-      ><h3>{{ tournament.displayName }}</h3>
-      <p>stuff here</p></ion-label
+    <ion-item
+      class="search-result-item"
+      lines="none"
+      *ngFor="let tournament of tournaments"
     >
-    <ion-thumbnail slot="start">
-      <img [src]="tournament.imageUri | defaultImage" alt="tournament-image" />
-    </ion-thumbnail>
-  </ion-item>
-</ion-list>
+      <ion-label
+        ><h3>{{ tournament.displayName }}</h3>
+        <p>stuff here</p></ion-label
+      >
+      <ion-thumbnail slot="start">
+        <img
+          [src]="tournament.imageUri | validateImage"
+          alt="tournament-image"
+        />
+      </ion-thumbnail>
+    </ion-item>
+  </ion-list>
+</ng-container>
 
-<ion-list *ngIf="(results.matches | filterArray) as matches">
-  <ion-item class="search-result-header" lines="none">
-    <ion-label>Matches</ion-label>
-  </ion-item>
-  <ion-item
-    class="search-result-item"
-    lines="none"
-    *ngFor="let match of matches"
-  >
-    <ion-label
-      ><h3>{{ match.gameMode }}</h3>
-      <p>stuff here</p></ion-label
+<ng-container *ngIf="selected === 'Matches'">
+  <ion-list *ngIf="results.matches | filterArray as matches; else notFound">
+    <ion-item
+      class="search-result-item"
+      lines="none"
+      *ngFor="let match of matches"
     >
-  </ion-item>
-</ion-list>
+      <ion-label
+        ><h3>{{ match.gameMode }}</h3>
+        <p>stuff here</p></ion-label
+      >
+    </ion-item>
+  </ion-list>
+</ng-container>
+
+<ng-container *ngIf="selected === 'Pro Players'">
+  <ion-list
+    *ngIf="
+      results.proPlayers | filterArray: undefined:'pro' as proPlayers;
+      else notFound
+    "
+  >
+    <ion-item
+      class="search-result-item"
+      lines="none"
+      *ngFor="let player of proPlayers"
+    >
+      <ion-label
+        ><h3>{{ player.proSteamAccount.name }}</h3>
+        <p>{{ player.avatar | validateImage: 'avatar' }}</p></ion-label
+      >
+      <ion-thumbnail slot="start">
+        <img
+          [src]="player.avatar | validateImage: 'avatar'"
+          alt="player-avatar"
+        />
+      </ion-thumbnail>
+    </ion-item>
+  </ion-list>
+</ng-container>
+
+<ng-template #notFound>
+  <ion-list>
+    <ion-item lines="none" class="search-result-item not-found">
+      <ion-label>
+        <h3>No {{ selected.toLowerCase() }} found...</h3>
+      </ion-label>
+      <ion-icon name="alert-circle" slot="start"></ion-icon>
+    </ion-item>
+  </ion-list>
+</ng-template>
