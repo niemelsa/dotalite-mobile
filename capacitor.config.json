@@ -9,11 +9,17 @@
       "launchShowDuration": 0
     },
     "CapacitorFirebaseAuth": {
-      "providers": ["google.com", "twitter.com", "facebook.com"],
+      "providers": [
+        "google.com",
+        "twitter.com",
+        "facebook.com"
+      ],
       "languageCode": "en",
       "nativeAuth": false,
       "permissions": {
-        "google": ["profile"]
+        "google": [
+          "profile"
+        ]
       }
     }
   },

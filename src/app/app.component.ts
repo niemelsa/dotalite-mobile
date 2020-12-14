@@ -47,9 +47,7 @@ export class AppComponent {
   }
 
   logout() {
-    this.authService.logout().then(() => {
-      console.log('user logged out');
-    });
+    this.authService.logOut();
   }
 
   toggleTheme() {

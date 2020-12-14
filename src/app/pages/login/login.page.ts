@@ -1,11 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  cfaSignIn,
-  cfaSignOut,
-  mapUserCredentialToUserInfo,
-  mapUserToUserInfo,
-} from 'capacitor-firebase-auth';
-import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -18,8 +11,16 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {}
 
-  googleLogin() {
-    this.auth.logInWithGoogle();
+  async googleLogin() {
+    await this.auth.logInWithGoogle();
+  }
+
+  async facebookLogin() {
+    await this.auth.logInWithFacebook();
+  }
+
+  async twitterLogin() {
+    await this.auth.logInWithTwitter();
   }
 
   logout() {
