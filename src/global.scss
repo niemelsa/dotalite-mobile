@@ -38,6 +38,14 @@ ion-menu-button {
   --color: var(--ion-color-dark);
 }
 
+ion-toolbar {
+  --background: transparent !important;
+}
+
+ion-header {
+  border: none;
+}
+
 .player-modal {
   .modal-wrapper {
     background-color: #4d4855;
@@ -95,7 +103,7 @@ ion-menu-button {
       //   background: var(--ion-color-light);
       display: flex;
       justify-content: center;
-      margin-top: 30%;
+      margin-top: 15%;
       height: 100%;
 
       ion-spinner {

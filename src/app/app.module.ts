@@ -13,7 +13,9 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { JwtModule, JwtHelperService } from '@auth0/angular-jwt';
-import { DefaultImagePipe } from './pipes/default-image.pipe';
+import { AngularFireModule } from '@angular/fire';
+import { environment } from '../environments/environment';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 
 @NgModule({
   declarations: [AppComponent],
@@ -32,6 +34,8 @@ import { DefaultImagePipe } from './pipes/default-image.pipe';
         allowedDomains: ['localhost:3000'],
       },
     }),
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAuthModule,
   ],
   providers: [
     StatusBar,

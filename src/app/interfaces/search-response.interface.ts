@@ -29,6 +29,7 @@ export interface Team {
 export interface ProPlayer {
   id: number;
   lastActiveTime: string;
+  proSteamAccount: object;
   name: string;
   avatar: string;
   soloRank: number;

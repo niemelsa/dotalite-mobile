@@ -3,7 +3,17 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+
+  firebaseConfig: {
+    apiKey: 'AIzaSyCUHnJ1aTCEPE3O1ycqxLTZ6sbozcOTrSI',
+    authDomain: 'dotalite-9fca1.firebaseapp.com',
+    projectId: 'dotalite-9fca1',
+    storageBucket: 'dotalite-9fca1.appspot.com',
+    messagingSenderId: '565189734209',
+    appId: '1:565189734209:web:44880fd583425444c5fbc0',
+    measurementId: 'G-1GPMPLN20L',
+  },
 };
 
 /*

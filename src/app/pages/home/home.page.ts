@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { AuthService } from './../../services/auth.service';
+import { AuthService } from '../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { ModalController, PopoverController } from '@ionic/angular';
 import { SearchComponent } from '../../components/search/search.component';
@@ -18,7 +18,9 @@ export class HomePage implements OnInit {
     private popoverCtrl: PopoverController
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log();
+  }
 
   async toggleSearch() {
     const modal = await this.modalController.create({

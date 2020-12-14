@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { SearchResponse } from '../interfaces/search-response.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SearchService {
-  apiUrl = 'http://localhost:3000/';
+  apiUrl = 'https://dotalite.herokuapp.com/';
   searchResults: BehaviorSubject<SearchResponse> = new BehaviorSubject<SearchResponse>(
     null
   );
@@ -20,6 +20,15 @@ export class SearchService {
 
     return this.http
       .get(request)
+      .pipe(
+        map(({ players, teams, matches, leagues, proPlayers }: any) => ({
+          players,
+          teams,
+          matches,
+          tournaments: leagues,
+          proPlayers,
+        }))
+      )
       .subscribe((results: SearchResponse) => this.searchResults.next(results));
   }
 }

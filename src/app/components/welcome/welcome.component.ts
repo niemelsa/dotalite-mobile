@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { User } from '../../interfaces/user.interface';
 import { AuthService } from '../../services/auth.service';
 import { PlayersService } from '../../services/players.service';
+import { UserInfo } from '../../interfaces/user-info.interface';
 
 @Component({
   selector: 'app-welcome',
@@ -9,10 +9,10 @@ import { PlayersService } from '../../services/players.service';
   styleUrls: ['./welcome.component.scss'],
 })
 export class WelcomeComponent implements OnInit {
-  @Input() user: User;
+  @Input() user: UserInfo;
 
   constructor(
-    private playersService: PlayersService,
+    public playersService: PlayersService,
     public authService: AuthService
   ) {}
 

@@ -1,13 +1,22 @@
 {
-  "appId": "io.ionic.starter.dotalite",
-  "appName": "dotalite-ionic",
+  "appId": "com.dotalite.mobile",
+  "appName": "dotalite",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",
   "plugins": {
     "SplashScreen": {
       "launchShowDuration": 0
+    },
+    "CapacitorFirebaseAuth": {
+      "providers": ["google.com", "twitter.com", "facebook.com"],
+      "languageCode": "en",
+      "nativeAuth": false,
+      "permissions": {
+        "google": ["profile"]
+      }
     }
   },
-  "cordova": {}
+  "cordova": {},
+  "windowsAndroidStudioPath": "C:\\Users\\Samppu\\AppData\\Local\\JetBrains\\Toolbox\\apps\\AndroidStudio\\ch-0\\201.6953283\\bin\\studio64.exe"
 }

@@ -34,7 +34,7 @@ export class ProfilePage implements OnInit {
 
   getPlayerData() {
     return this.http
-      .get(`http://localhost:3000/players/${this.userId}`)
+      .get(`https://dotalite.herokuapp.com/players/${this.userId}`)
       .subscribe((player: PlayerData) => (this.player = player));
   }
 
