@@ -1,11 +1,5 @@
 import { User } from './../../interfaces/user.interface';
-import {
-  Component,
-  Input,
-  OnChanges,
-  OnInit,
-  SimpleChanges,
-} from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { PlayersService } from '../../services/players.service';
 import { UserInfo } from '../../interfaces/user-info.interface';

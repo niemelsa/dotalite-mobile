@@ -1,8 +1,10 @@
+import { Favorite } from './favorite.interface';
+
 export interface UserInfo {
-  displayName: string | null;
-  email: string | null;
-  phoneNumber: string | null;
-  photoURL: string | null;
-  providerId: string;
+  name: string;
+  email: string;
+  image: string;
   uid: string;
+  playerId?: string;
+  favorites?: Favorite[];
 }

@@ -1,14 +1,31 @@
-<ion-item
-  button
-  *ngIf="authService.user | async as user"
-  (click)="playersService.openProfile(user.uid)"
-  lines="none"
->
-  <ion-label>
-    <p>Welcome back,</p>
-    <h1>{{ user.displayName }}</h1>
-  </ion-label>
-  <ion-thumbnail>
-    <img [src]="user.photoURL" alt="user avatar" />
-  </ion-thumbnail>
-</ion-item>
+<ng-container *ngIf="authService.user | async as user">
+  <ion-item
+    button
+    *ngIf="user.playerId"
+    (click)="playersService.openProfile(user.uid)"
+    lines="none"
+  >
+    <ion-label>
+      <p>Welcome back,</p>
+      <h1>{{ user.name }}</h1>
+    </ion-label>
+    <ion-thumbnail>
+      <img [src]="user.image" alt="user avatar" />
+    </ion-thumbnail>
+  </ion-item>
+
+  <ion-item
+    button
+    *ngIf="!user.playerId"
+    (click)="playersService.openProfile(user.uid)"
+    lines="none"
+  >
+    <ion-label>
+      <p>Linkkaa pelaaaja u fool</p>
+      <h1>{{ user.name }}</h1>
+    </ion-label>
+    <ion-thumbnail>
+      <img [src]="user.image" alt="user avatar" />
+    </ion-thumbnail>
+  </ion-item>
+</ng-container>
