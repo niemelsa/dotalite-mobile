@@ -18,9 +18,7 @@ export class HomePage implements OnInit {
     private popoverCtrl: PopoverController
   ) {}
 
-  ngOnInit() {
-    console.log();
-  }
+  ngOnInit() {}
 
   async toggleSearch() {
     const modal = await this.modalController.create({

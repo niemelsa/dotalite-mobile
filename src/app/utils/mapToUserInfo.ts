@@ -4,12 +4,12 @@ import { UserInfo } from '../interfaces/user-info.interface';
 import firebase from 'firebase';
 import User = firebase.User;
 
-export function mapToUserInfo(
-  observable: Observable<User>
-): Observable<UserInfo> {
-  return observable.pipe(
+export function mapToUserInfo(obs: Observable<User>): Observable<UserInfo> {
+  return obs.pipe(
     map((user) => {
       if (user) {
+        console.log('id token: ', user.getIdToken());
+
         const {
           uid,
           providerId,

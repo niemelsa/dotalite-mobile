@@ -1,7 +1,7 @@
 <ion-item
   button
   *ngIf="authService.user | async as user"
-  (click)="playersService.openProfile(user.id)"
+  (click)="playersService.openProfile(user.uid)"
   lines="none"
 >
   <ion-label>

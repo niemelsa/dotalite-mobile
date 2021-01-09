@@ -1,4 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { User } from './../../interfaces/user.interface';
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { PlayersService } from '../../services/players.service';
 import { UserInfo } from '../../interfaces/user-info.interface';
@@ -8,13 +15,11 @@ import { UserInfo } from '../../interfaces/user-info.interface';
   templateUrl: './welcome.component.html',
   styleUrls: ['./welcome.component.scss'],
 })
-export class WelcomeComponent implements OnInit {
+export class WelcomeComponent {
   @Input() user: UserInfo;
 
   constructor(
     public playersService: PlayersService,
     public authService: AuthService
   ) {}
-
-  ngOnInit() {}
 }
