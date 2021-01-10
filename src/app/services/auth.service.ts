@@ -29,18 +29,22 @@ export class AuthService {
         tap((user) => !user && this.user.next(null)),
         filter<User>(Boolean),
         mergeMap((user) => user.getIdToken()),
-        switchMap((token) => this.fetchUserInfo(token))
+        switchMap((token) => this.getUserInfo(token))
       )
       .subscribe((user) => this.user.next(user));
   }
 
-  fetchUserInfo(token): Observable<UserInfo> {
-    const request = `${this.apiUrl}${token}`;
+  getUserInfo(token: string): Observable<UserInfo> {
+    const request = `${this.apiUrl}`;
 
-    return this.http.get<UserInfo>(request);
+    return this.http.get<UserInfo>(request, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
   }
 
-  logInWithGoogle() {
+  async logInWithGoogle() {
     cfaSignIn('google.com').subscribe(() => {
       this.router.navigate(['tabs']).then(() => {
         console.log('logged in with google');
@@ -48,7 +52,7 @@ export class AuthService {
     });
   }
 
-  logInWithFacebook() {
+  async logInWithFacebook() {
     cfaSignIn('facebook.com').subscribe(() => {
       this.router.navigate(['tabs']).then(() => {
         console.log('logged in with facebook');
@@ -56,7 +60,7 @@ export class AuthService {
     });
   }
 
-  logInWithTwitter() {
+  async logInWithTwitter() {
     cfaSignIn('twitter.com').subscribe(() => {
       this.router.navigate(['tabs']).then(() => {
         console.log('logged in with twitter');
@@ -64,7 +68,7 @@ export class AuthService {
     });
   }
 
-  logOut() {
+  async logOut() {
     // cfaSignOut().subscribe(() => {
     //   console.log('logged out');
     // });

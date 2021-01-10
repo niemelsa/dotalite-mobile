@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { AuthService } from './services/auth.service';
 import { Component } from '@angular/core';
 
@@ -15,7 +16,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  appPages: Array<AppPage>;
+  appPages: AppPage[];
   dark = true;
 
   constructor(
@@ -23,7 +24,8 @@ export class AppComponent {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private menu: MenuController,
-    public authService: AuthService
+    public authService: AuthService,
+    private router: Router
   ) {
     this.initializeApp();
   }
@@ -42,12 +44,13 @@ export class AppComponent {
     document.body.classList.toggle('dark', !event.detail.checked);
   }
 
-  login() {
-    window.location.href = 'http://localhost:3000/auth/steam';
+  async handleLogin() {
+    await this.router.navigate(['login']);
   }
 
-  logout() {
-    this.authService.logOut();
+  async logout() {
+    await this.authService.logOut();
+    await this.router.navigate(['login']);
   }
 
   toggleTheme() {
