@@ -1,17 +1,13 @@
 :host {
   background: var(--ion-color-light-shade);
-  padding: 0 0 10px 0;
+  padding: 0 0 0 0;
 }
 
 ion-item {
   --background: transparent;
   //--background: var(--ion-color-light);
   border-radius: 15px;
-  margin: 0 20px;
-
-  ion-label {
-    padding: 5px;
-  }
+  margin: 5px 20px;
 }
 
 ion-thumbnail {

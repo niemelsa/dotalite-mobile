@@ -10,17 +10,17 @@
 
 <ion-item class="searchbar-item" lines="none">
   <ion-label position="stacked" class="ion-padding-horizontal">
-    Search
+    {{ getHeaderText() }}
   </ion-label>
   <ion-searchbar
     debounce="1000"
     (ionInput)="handleInput($event)"
     (ionChange)="handleSearch($event)"
-    placeholder="Type to start searching"
+    [placeholder]="placeholderText"
   ></ion-searchbar>
 </ion-item>
 
-<div class="ion-padding-horizontal chip-wrapper">
+<div class="ion-padding-horizontal chip-wrapper" *ngIf="!isLinkComponent">
   <ion-chip
     *ngFor="let element of filters"
     [class.active]="element.title === selectedFilter"
@@ -33,9 +33,10 @@
 
 <ion-content class="ion-padding-horizontal">
   <app-search-results
-    *ngIf="search.searchResults | async as results; else loading"
+    *ngIf="searchService.searchResults | async as results; else loading"
     [results]="results"
     [selected]="selectedFilter"
+    [isLinkComponent]="isLinkComponent"
   >
   </app-search-results>
 

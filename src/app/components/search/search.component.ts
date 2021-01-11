@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { SearchService } from '../../services/search.service';
 
@@ -10,6 +10,8 @@ import { SearchService } from '../../services/search.service';
 export class SearchComponent implements OnInit, OnDestroy {
   selectedFilter: string;
   searchInProgress: boolean;
+  placeholderText: string;
+  hasResults: boolean;
   filters = [
     { title: 'Players', icon: 'people' },
     { title: 'Teams', icon: 'apps' },
@@ -18,17 +20,23 @@ export class SearchComponent implements OnInit, OnDestroy {
     { title: 'Pro Players', icon: 'star' },
   ];
 
+  @Input() isLinkComponent: boolean;
+
   constructor(
     private modalCtrl: ModalController,
-    public search: SearchService
+    public searchService: SearchService
   ) {}
 
   ngOnInit() {
     this.selectedFilter = this.filters[0].title;
+
+    this.placeholderText = this.isLinkComponent
+      ? 'Type your player name'
+      : 'Type to start searching';
   }
 
   ngOnDestroy() {
-    this.search.searchResults.next(null);
+    this.searchService.searchResults.next(null);
   }
 
   dismiss() {
@@ -41,22 +49,32 @@ export class SearchComponent implements OnInit, OnDestroy {
     const query = event.target.value;
 
     if (query) {
-      await this.search.getSearchResults(query);
+      await this.searchService.getSearchResults(query);
+      this.hasResults = true;
     }
   }
 
   handleInput(event) {
     if (event.target.value) {
-      this.search.searchResults.next(null);
+      this.searchService.searchResults.next(null);
       this.searchInProgress = true;
     } else {
       this.searchInProgress = false;
-      this.search.searchResults.next(null);
+      this.searchService.searchResults.next(null);
+      this.hasResults = false;
     }
   }
 
   changeFilter(event) {
     this.selectedFilter =
       event.target.textContent || event.target.parentElement.textContent;
+  }
+
+  getHeaderText(): string {
+    if (this.isLinkComponent && this.hasResults) {
+      return 'Pick your profile';
+    } else {
+      return 'Search';
+    }
   }
 }

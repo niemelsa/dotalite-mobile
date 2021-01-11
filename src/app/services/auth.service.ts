@@ -1,5 +1,5 @@
 import { UserInfo } from './../interfaces/user-info.interface';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable, BehaviorSubject, from } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AngularFireAuth } from '@angular/fire/auth';
@@ -7,9 +7,11 @@ import { cfaSignIn } from 'capacitor-firebase-auth';
 import { Router } from '@angular/router';
 import { filter, mergeMap, switchMap, tap } from 'rxjs/operators';
 
+import { Plugins } from '@capacitor/core';
+const { Storage } = Plugins;
+
 // TODO: find better way
 import firebase from 'firebase';
-import User = firebase.User;
 
 @Injectable({
   providedIn: 'root',
@@ -26,12 +28,12 @@ export class AuthService {
     this.afAuth.authState
       .pipe(
         // prevents http call to server incase user logs out
-        tap((user) => !user && this.user.next(null)),
-        filter<User>(Boolean),
+        tap((user) => !user && this.logOutUser()),
+        filter<firebase.User>(Boolean),
         mergeMap((user) => user.getIdToken()),
         switchMap((token) => this.getUserInfo(token))
       )
-      .subscribe((user) => this.user.next(user));
+      .subscribe((user) => this.logInUser(user));
   }
 
   getUserInfo(token: string): Observable<UserInfo> {
@@ -42,6 +44,20 @@ export class AuthService {
         Authorization: `Bearer ${token}`,
       },
     });
+  }
+
+  async logOutUser() {
+    await Storage.remove({ key: 'idToken' });
+    this.user.next(null);
+  }
+
+  async logInUser(user: UserInfo) {
+    await Storage.set({ key: 'idToken', value: user.uid });
+    this.user.next(user);
+  }
+
+  getToken(): Observable<any> {
+    return from(Storage.get({ key: 'idToken' }));
   }
 
   async logInWithGoogle() {

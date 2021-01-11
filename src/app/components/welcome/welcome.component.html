@@ -17,13 +17,13 @@
   <ion-item
     button
     *ngIf="!user.playerId"
-    (click)="playersService.openProfile(user.uid)"
+    (click)="presentModal()"
     lines="none"
     class="add-profile"
   >
     <ion-label>
-      <p>Welcome to Dotalite, {{ user.name.split(' ')[0].toString() }}</p>
-      <h2>Click here to link<br />your player profile</h2>
+      <p>Welcome, {{ user.name.split(' ')[0].toString() }}</p>
+      <h2>Click here to add<br />your player profile</h2>
     </ion-label>
     <ion-thumbnail>
       <img src="../../../assets/tap.png" alt="user avatar" />

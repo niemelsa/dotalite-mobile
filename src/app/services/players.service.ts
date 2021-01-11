@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ProfilePage } from '../pages/profile/profile.page';
 import { ModalController } from '@ionic/angular';
@@ -6,7 +7,10 @@ import { ModalController } from '@ionic/angular';
   providedIn: 'root',
 })
 export class PlayersService {
-  constructor(private modalController: ModalController) {}
+  constructor(
+    private modalController: ModalController,
+    private http: HttpClient
+  ) {}
 
   async openProfile(id: number) {
     const modal = await this.modalController.create({
@@ -20,5 +24,9 @@ export class PlayersService {
 
     const { data } = await modal.onWillDismiss();
     console.log(data);
+  }
+
+  async linkProfile(event, id: number) {
+    event.stopPropagation();
   }
 }
