@@ -18,7 +18,7 @@ import firebase from 'firebase';
 })
 export class AuthService {
   public user: BehaviorSubject<UserInfo> = new BehaviorSubject(null);
-  apiUrl = 'http://localhost:3000/auth/';
+  apiUrl = 'http://localhost:3000/auth/signin';
 
   constructor(
     private afAuth: AngularFireAuth,

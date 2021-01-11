@@ -1,4 +1,4 @@
-import { mergeMap } from 'rxjs/operators';
+import { mergeMap, switchMap } from 'rxjs/operators';
 import { AuthService } from './../services/auth.service';
 import {
   HttpHandler,
@@ -13,7 +13,7 @@ export class TokenInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
     return this.auth.getToken().pipe(
-      mergeMap(({ token }) => {
+      switchMap(({ token }) => {
         if (token) {
           req = req.clone({
             setHeaders: {
