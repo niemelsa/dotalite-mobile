@@ -1,4 +1,3 @@
-import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { ModalController, PopoverController } from '@ionic/angular';
@@ -13,7 +12,6 @@ import { NotificationsComponent } from '../../components/notifications/notificat
 export class HomePage implements OnInit {
   constructor(
     public auth: AuthService,
-    private router: Router,
     private modalController: ModalController,
     private popoverCtrl: PopoverController
   ) {}

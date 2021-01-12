@@ -1,6 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from './../../services/auth.service';
+import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
 import { SearchResponse } from '../../interfaces/search-response.interface';
 import { PlayersService } from '../../services/players.service';
+import { ModalController } from '@ionic/angular';
+import { ProfilePage } from 'src/app/pages/profile/profile.page';
 
 @Component({
   selector: 'app-search-results',
@@ -11,8 +15,30 @@ export class SearchResultsComponent implements OnInit {
   @Input() results: SearchResponse;
   @Input() selected: string;
   @Input() isLinkComponent: boolean;
+  @Output() linkEvent = new EventEmitter<any>();
 
-  constructor(public playersService: PlayersService) {}
+  constructor(
+    public playersService: PlayersService,
+    private modalController: ModalController
+  ) {}
 
   ngOnInit() {}
+
+  linkProfile(event, playerId) {
+    this.linkEvent.emit(playerId);
+  }
+
+  async openProfile(id: number) {
+    const modal = await this.modalController.create({
+      component: ProfilePage,
+      componentProps: {
+        userId: id,
+      },
+      cssClass: 'player-modal',
+    });
+    await modal.present();
+
+    const { data } = await modal.onWillDismiss();
+    console.log(data);
+  }
 }

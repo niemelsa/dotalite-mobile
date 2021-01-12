@@ -5,7 +5,7 @@
       class="search-result-item"
       lines="none"
       *ngFor="let player of players"
-      (click)="playersService.openProfile(player.account_id)"
+      (click)="openProfile(player.account_id)"
     >
       <ion-label
         ><h3>{{ player.personaname }}</h3>
@@ -16,16 +16,15 @@
       </ion-thumbnail>
 
       <ion-button
-        (click)="playersService.linkProfile($event, player.account_id)"
+        (click)="
+          $event.stopPropagation(); linkProfile($event, player.account_id)
+        "
         icon-only
         *ngIf="isLinkComponent"
         class="link-button"
       >
         <ion-icon size="large" name="add-circle"></ion-icon>
       </ion-button>
-      <!-- <div *ngIf="isLinkComponent" class="link-div">
-        <ion-icon size="large" name="add-circle"></ion-icon>
-      </div> -->
     </ion-item>
   </ion-list>
 </ng-container>

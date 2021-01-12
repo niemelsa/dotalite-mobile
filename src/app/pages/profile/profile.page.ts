@@ -1,9 +1,7 @@
+import { PlayersService } from './../../services/players.service';
 import { PlayerData } from '../../interfaces/player-data.interface';
-import { Router } from '@angular/router';
-import { Location } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-profile-page',
@@ -14,10 +12,8 @@ export class ProfilePage implements OnInit {
   selectedTab = 'Overview';
 
   constructor(
-    private location: Location,
-    private router: Router,
     private modalCtrl: ModalController,
-    private http: HttpClient
+    private playersService: PlayersService
   ) {}
 
   @Input() userId: any;
@@ -33,9 +29,11 @@ export class ProfilePage implements OnInit {
   }
 
   getPlayerData() {
-    return this.http
-      .get(`https://dotalite.herokuapp.com/players/${this.userId}`)
-      .subscribe((player: PlayerData) => (this.player = player));
+    this.playersService
+      .getPlayerData(this.userId)
+      .subscribe((player: PlayerData) => {
+        this.player = player;
+      });
   }
 
   handleTabChanged(newTab: string) {

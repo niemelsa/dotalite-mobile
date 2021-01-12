@@ -1,3 +1,4 @@
+import { StorageService } from './storage.service';
 import { UserInfo } from './../interfaces/user-info.interface';
 import { Observable, BehaviorSubject, from } from 'rxjs';
 import { Injectable } from '@angular/core';
@@ -18,6 +19,7 @@ import firebase from 'firebase';
 })
 export class AuthService {
   public user: BehaviorSubject<UserInfo> = new BehaviorSubject(null);
+  public token: BehaviorSubject<any> = new BehaviorSubject(null);
   apiUrl = 'http://localhost:3000/auth/signin';
 
   constructor(
@@ -31,19 +33,16 @@ export class AuthService {
         tap((user) => !user && this.logOutUser()),
         filter<firebase.User>(Boolean),
         mergeMap((user) => user.getIdToken()),
-        switchMap((token) => this.getUserInfo(token))
+        tap((token) => this.token.next(token)),
+        switchMap(() => this.getUserInfo())
       )
       .subscribe((user) => this.logInUser(user));
   }
 
-  getUserInfo(token: string): Observable<UserInfo> {
+  getUserInfo(): Observable<UserInfo> {
     const request = `${this.apiUrl}`;
 
-    return this.http.get<UserInfo>(request, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    return this.http.get<UserInfo>(request);
   }
 
   async logOutUser() {
@@ -54,10 +53,6 @@ export class AuthService {
   async logInUser(user: UserInfo) {
     await Storage.set({ key: 'idToken', value: user.uid });
     this.user.next(user);
-  }
-
-  getToken(): Observable<any> {
-    return from(Storage.get({ key: 'idToken' }));
   }
 
   async logInWithGoogle() {

@@ -1,6 +1,8 @@
 import { User } from '../../interfaces/user.interface';
 import { Component, Input, OnInit } from '@angular/core';
 import { PlayersService } from '../../services/players.service';
+import { ProfilePage } from 'src/app/pages/profile/profile.page';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-shortcut',
@@ -34,7 +36,10 @@ export class ShortcutComponent implements OnInit {
 
   selectedTab = 'featured';
 
-  constructor(private playersService: PlayersService) {}
+  constructor(
+    private playersService: PlayersService,
+    private modalController: ModalController
+  ) {}
 
   ngOnInit() {}
 
@@ -47,7 +52,7 @@ export class ShortcutComponent implements OnInit {
 
     switch (type) {
       case 'player':
-        this.playersService.openProfile(favorite.id);
+        this.openProfile(favorite.id);
         break;
       case 'team':
         console.log('tiimi');
@@ -56,5 +61,19 @@ export class ShortcutComponent implements OnInit {
         console.log('turnaus');
         break;
     }
+  }
+
+  async openProfile(id: number) {
+    const modal = await this.modalController.create({
+      component: ProfilePage,
+      componentProps: {
+        userId: id,
+      },
+      cssClass: 'player-modal',
+    });
+    await modal.present();
+
+    const { data } = await modal.onWillDismiss();
+    console.log(data);
   }
 }

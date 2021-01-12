@@ -1,3 +1,6 @@
+import { AuthService } from './../../services/auth.service';
+import { Router } from '@angular/router';
+import { PlayersService } from './../../services/players.service';
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { SearchService } from '../../services/search.service';
@@ -24,7 +27,10 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   constructor(
     private modalCtrl: ModalController,
-    public searchService: SearchService
+    public searchService: SearchService,
+    private playersService: PlayersService,
+    private router: Router,
+    private auth: AuthService
   ) {}
 
   ngOnInit() {
@@ -43,6 +49,18 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.modalCtrl.dismiss({
       dismissed: true,
     });
+  }
+
+  handleLinkEvent(playerId: number) {
+    this.playersService
+      .linkProfile(playerId)
+      .subscribe(({ message, user }: any) => {
+        this.auth.user.next(user);
+        console.log(message);
+        this.router.navigate(['tabs']).then(() => {
+          this.dismiss();
+        });
+      });
   }
 
   async handleSearch(event) {

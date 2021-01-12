@@ -1,32 +1,44 @@
 <ng-container *ngIf="authService.user | async as user">
-  <ion-item
-    button
-    *ngIf="user.playerId"
-    (click)="playersService.openProfile(user.uid)"
-    lines="none"
-  >
-    <ion-label>
-      <p>Welcome back,</p>
-      <h1>{{ user.name }}</h1>
-    </ion-label>
-    <ion-thumbnail>
-      <img [src]="user.image" alt="user avatar" />
-    </ion-thumbnail>
-  </ion-item>
+  <ng-container *ngIf="user.playerId; else link">
+    <ng-container *ngIf="player; else loading">
+      <ion-item
+        button
+        *ngIf="user.playerId"
+        (click)="openProfile(user.uid)"
+        lines="none"
+      >
+        <ion-label>
+          <p>Welcome back,</p>
+          <h1>{{ user.name }}</h1>
+        </ion-label>
+        <ion-thumbnail>
+          <img [src]="user.image" alt="user avatar" />
+        </ion-thumbnail>
+      </ion-item>
+    </ng-container>
 
-  <ion-item
-    button
-    *ngIf="!user.playerId"
-    (click)="presentModal()"
-    lines="none"
-    class="add-profile"
-  >
-    <ion-label>
-      <p>Welcome, {{ user.name.split(' ')[0].toString() }}</p>
-      <h2>Click here to add<br />your player profile</h2>
-    </ion-label>
-    <ion-thumbnail>
-      <img src="../../../assets/tap.png" alt="user avatar" />
-    </ion-thumbnail>
-  </ion-item>
+    <ng-template #loading>
+      <div class="spinner">
+        <ion-spinner name="crescent"></ion-spinner>
+      </div>
+    </ng-template>
+  </ng-container>
+
+  <ng-template #link>
+    <ion-item
+      button
+      *ngIf="!user.playerId"
+      (click)="openSearch()"
+      lines="none"
+      class="add-profile"
+    >
+      <ion-label>
+        <p>Welcome, {{ user.name.split(' ')[0].toString() }}</p>
+        <h2>Click here to add<br />your player profile</h2>
+      </ion-label>
+      <ion-thumbnail>
+        <img src="../../../assets/tap.png" alt="user avatar" />
+      </ion-thumbnail>
+    </ion-item>
+  </ng-template>
 </ng-container>
