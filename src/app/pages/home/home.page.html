@@ -17,16 +17,17 @@
   <!-- welcome component -->
   <app-welcome [user]="auth.user | async"></app-welcome>
 
-  <!-- shortcut component -->
-  <app-shortcut [user]="auth.user | async"></app-shortcut>
+  <div class="content-wrapper">
+    <!-- shortcut component -->
+    <app-shortcut [user]="auth.user | async"></app-shortcut>
 
-  <!-- add space -->
-  <ion-item>
+    <!-- add space -->
+    <!-- <ion-item>
     <img src="https://www.opendota.com/assets/images/vp-banner.jpg" alt="" />
-  </ion-item>
+  </ion-item> -->
 
-  <!-- bottom-section -->
-  <div class="dashboard-section ion-padding">
+    <!-- bottom-section -->
+    <!-- <div class="dashboard-section ion-padding">
     <ion-card>
       <ion-card-header>
         <ion-card-title>Battle Pass 2020</ion-card-title>
@@ -42,5 +43,6 @@
         <ion-card-subtitle>something here</ion-card-subtitle>
       </ion-card-header>
     </ion-card>
+  </div> -->
   </div>
 </ion-content>

@@ -3,23 +3,30 @@
     <ng-container *ngIf="player; else loading">
       <ion-item
         button
-        *ngIf="user.playerId"
-        (click)="openProfile(user.uid)"
+        (click)="openProfile(player.profile.account_id)"
         lines="none"
       >
         <ion-label>
           <p>Welcome back,</p>
-          <h1>{{ user.name }}</h1>
+          <h1>{{ player.profile.personaname }}</h1>
         </ion-label>
         <ion-thumbnail>
-          <img [src]="user.image" alt="user avatar" />
+          <img [src]="player.profile.avatarfull" alt="user avatar" />
         </ion-thumbnail>
       </ion-item>
     </ng-container>
 
     <ng-template #loading>
-      <div class="spinner">
-        <ion-spinner name="crescent"></ion-spinner>
+      <div class="custom-skeleton">
+        <ion-item lines="none">
+          <ion-label>
+            <ion-skeleton-text animated style="width: 65%"></ion-skeleton-text>
+            <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+          </ion-label>
+          <ion-thumbnail>
+            <ion-skeleton-text animated></ion-skeleton-text>
+          </ion-thumbnail>
+        </ion-item>
       </div>
     </ng-template>
   </ng-container>
