@@ -1,3 +1,4 @@
+import { PlayerData } from './../interfaces/player-data.interface';
 import { StorageService } from './storage.service';
 import { UserInfo } from './../interfaces/user-info.interface';
 import { Observable, BehaviorSubject, from } from 'rxjs';
@@ -19,6 +20,7 @@ import firebase from 'firebase';
 })
 export class AuthService {
   public user: BehaviorSubject<UserInfo> = new BehaviorSubject(null);
+  public playerId: BehaviorSubject<string> = new BehaviorSubject(null);
   public token: BehaviorSubject<any> = new BehaviorSubject(null);
   apiUrl = 'http://localhost:3000/auth/signin';
 
@@ -47,12 +49,15 @@ export class AuthService {
 
   async logOutUser() {
     await Storage.remove({ key: 'idToken' });
+    this.token.next(null);
     this.user.next(null);
+    this.playerId.next(null);
   }
 
   async logInUser(user: UserInfo) {
     await Storage.set({ key: 'idToken', value: user.uid });
     this.user.next(user);
+    this.playerId.next(user.playerId);
   }
 
   async logInWithGoogle() {

@@ -1,6 +1,6 @@
 import { PlayerData } from './../../interfaces/player-data.interface';
 import { SearchComponent } from './../search/search.component';
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { PlayersService } from '../../services/players.service';
 import { UserInfo } from '../../interfaces/user-info.interface';
@@ -12,24 +12,34 @@ import { ProfilePage } from 'src/app/pages/profile/profile.page';
   templateUrl: './welcome.component.html',
   styleUrls: ['./welcome.component.scss'],
 })
-export class WelcomeComponent implements OnChanges {
-  @Input() user: UserInfo;
-  player: PlayerData = null;
+export class WelcomeComponent {
+  private _user: UserInfo;
+  public player: PlayerData = null;
+
+  @Input()
+  set user(val: UserInfo) {
+    if (val && val.playerId) {
+      if (!this.player) {
+        this.getPlayerData(val.playerId);
+      } else {
+        if (this.player.profile.account_id != val.playerId) {
+          this.getPlayerData(val.playerId);
+        }
+      }
+    } else {
+      this.player = null;
+    }
+  }
+
+  get user(): UserInfo {
+    return this._user;
+  }
 
   constructor(
     public playersService: PlayersService,
     public authService: AuthService,
     public modalController: ModalController
   ) {}
-
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes.user.currentValue) {
-      let playerId = changes.user.currentValue.playerId;
-      if (playerId != null && !this.player) {
-        this.getPlayerData(playerId);
-      }
-    }
-  }
 
   async openSearch() {
     const modal = await this.modalController.create({
@@ -58,11 +68,12 @@ export class WelcomeComponent implements OnChanges {
   }
 
   getPlayerData(playerId: string) {
-    this.playersService
-      .getPlayerData(playerId)
-      .subscribe((player: PlayerData) => {
-        this.player = player;
-        console.log(this.player);
-      });
+    if (playerId) {
+      this.playersService
+        .getPlayerData(playerId)
+        .subscribe((player: PlayerData) => {
+          this.player = player;
+        });
+    }
   }
 }
