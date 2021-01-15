@@ -7,8 +7,6 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { getAppPages } from './pages/appPages';
 import { AppPage } from './interfaces/app-page.interface';
-import { User } from './interfaces/user.interface';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -49,7 +47,7 @@ export class AppComponent {
   }
 
   async logout() {
-    await this.authService.logOut();
+    await this.authService.logOutUser();
     await this.router.navigate(['login']);
   }
 

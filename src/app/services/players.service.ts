@@ -6,15 +6,16 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class PlayersService {
-  apiUrl = 'http://localhost:3000/user/link';
+  apiUrl = 'https://dotalite.herokuapp.com';
+  // apiUrl = 'http://localhost:3000';
 
   constructor(private http: HttpClient) {}
 
   getPlayerData(playerId: string): Observable<any> {
-    return this.http.get(`https://dotalite.herokuapp.com/players/${playerId}`);
+    return this.http.get(`${this.apiUrl}/players/${playerId}`);
   }
 
   linkProfile(playerId: number): Observable<any> {
-    return this.http.put(this.apiUrl, { playerId });
+    return this.http.put(`${this.apiUrl}/user/link`, { playerId });
   }
 }

@@ -1,4 +1,4 @@
-import { User } from '../../interfaces/user.interface';
+import { UserInfo } from './../../interfaces/user-info.interface';
 import { Component, Input, OnInit } from '@angular/core';
 import { PlayersService } from '../../services/players.service';
 import { ProfilePage } from 'src/app/pages/profile/profile.page';
@@ -10,7 +10,7 @@ import { ModalController } from '@ionic/angular';
   styleUrls: ['./shortcut.component.scss'],
 })
 export class ShortcutComponent implements OnInit {
-  @Input() user: User;
+  @Input() user: UserInfo;
 
   mockFavorites = [
     {

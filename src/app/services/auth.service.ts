@@ -1,16 +1,11 @@
-import { PlayerData } from './../interfaces/player-data.interface';
-import { StorageService } from './storage.service';
 import { UserInfo } from './../interfaces/user-info.interface';
-import { Observable, BehaviorSubject, from } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { cfaSignIn } from 'capacitor-firebase-auth';
 import { Router } from '@angular/router';
 import { filter, mergeMap, switchMap, tap } from 'rxjs/operators';
-
-import { Plugins } from '@capacitor/core';
-const { Storage } = Plugins;
 
 // TODO: find better way
 import firebase from 'firebase';
@@ -20,9 +15,9 @@ import firebase from 'firebase';
 })
 export class AuthService {
   public user: BehaviorSubject<UserInfo> = new BehaviorSubject(null);
-  public playerId: BehaviorSubject<string> = new BehaviorSubject(null);
-  public token: BehaviorSubject<any> = new BehaviorSubject(null);
-  apiUrl = 'http://localhost:3000/auth/signin';
+  public token: BehaviorSubject<string> = new BehaviorSubject(null);
+  apiUrl = 'https://dotalite.herokuapp.com';
+  // apiUrl = 'http://localhost:3000';
 
   constructor(
     private afAuth: AngularFireAuth,
@@ -42,22 +37,20 @@ export class AuthService {
   }
 
   getUserInfo(): Observable<UserInfo> {
-    const request = `${this.apiUrl}`;
+    const request = `${this.apiUrl}/auth/signin`;
 
     return this.http.get<UserInfo>(request);
   }
 
   async logOutUser() {
-    await Storage.remove({ key: 'idToken' });
-    this.token.next(null);
-    this.user.next(null);
-    this.playerId.next(null);
+    this.afAuth.signOut().then(() => {
+      this.token.next(null);
+      this.user.next(null);
+    });
   }
 
   async logInUser(user: UserInfo) {
-    await Storage.set({ key: 'idToken', value: user.uid });
     this.user.next(user);
-    this.playerId.next(user.playerId);
   }
 
   async logInWithGoogle() {
@@ -81,15 +74,6 @@ export class AuthService {
       this.router.navigate(['tabs']).then(() => {
         console.log('logged in with twitter');
       });
-    });
-  }
-
-  async logOut() {
-    // cfaSignOut().subscribe(() => {
-    //   console.log('logged out');
-    // });
-    this.afAuth.signOut().then(() => {
-      console.log('signed out');
     });
   }
 }

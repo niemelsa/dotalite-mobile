@@ -63,12 +63,15 @@ export class SearchComponent implements OnInit, OnDestroy {
       });
   }
 
-  async handleSearch(event) {
+  handleSearch(event) {
     const query = event.target.value;
 
     if (query) {
-      await this.searchService.getSearchResults(query);
-      this.hasResults = true;
+      this.searchService.getSearchResults(query).subscribe((results) => {
+        this.searchService.searchResults.next(results);
+        console.log(results);
+        this.hasResults = true;
+      });
     }
   }
 

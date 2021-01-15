@@ -1,4 +1,7 @@
 export interface Favorite {
-  favorite: string;
+  favoriteId: string;
   type: string;
+  image: string;
+  userId: string;
+  title: string;
 }

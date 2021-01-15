@@ -1,4 +1,9 @@
-<ion-segment [(ngModel)]="selectedTab" (ionChange)="segmentChanged($event)" mode="md" scrollable>
+<ion-segment
+  [(ngModel)]="selectedTab"
+  (ionChange)="segmentChanged($event)"
+  mode="md"
+  scrollable
+>
   <ion-segment-button value="featured">
     <ion-label>Featured</ion-label>
   </ion-segment-button>
@@ -15,19 +20,23 @@
 </ion-list>
 
 <ion-list *ngIf="selectedTab == 'favorites'" lines="none">
-  <ion-item button *ngFor="let favorite of mockFavorites;" (click)="openFavorite(favorite)">
+  <ion-item
+    button
+    *ngFor="let favorite of user.favorites"
+    (click)="openFavorite(favorite)"
+  >
     <ion-thumbnail slot="start">
-      <img [src]="favorite.image">
+      <img [src]="favorite.image" />
     </ion-thumbnail>
     <ion-label>
       <h3>{{ favorite.title }}</h3>
-      <p>{{ favorite.category }}</p>
+      <p>{{ favorite.type }}</p>
     </ion-label>
   </ion-item>
 </ion-list>
 
 <ion-list *ngIf="selectedTab == 'news'" lines="none">
-  <ion-item button *ngFor="let favorite of mockFavorites;">
+  <ion-item button *ngFor="let favorite of mockFavorites">
     <ion-label>
       <h3>Heloust</h3>
       <p>news works</p>
