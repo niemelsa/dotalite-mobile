@@ -45,21 +45,21 @@ export class ProfilePage implements OnInit {
     let {
       profile: { personaname: title, avatarfull: image, account_id: playerId },
     } = player;
-    let userId = this.auth.user.getValue().uid;
 
     let favorite = {
       title,
       image,
-      playerId,
-      userId,
+      favoriteId: playerId,
+      type: 'Player',
     };
 
     let request: Observable<any> = this.isFavorited()
       ? this.favoritesService.removeFromFavorites(favorite)
       : this.favoritesService.addToFavorites(favorite);
 
-    request.subscribe((user) => {
+    request.subscribe(({ user }) => {
       console.log('toggled favorite: ', user);
+      this.auth.user.next(user);
     });
   }
 

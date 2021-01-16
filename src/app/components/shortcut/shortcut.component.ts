@@ -1,3 +1,4 @@
+import { Favorite } from './../../interfaces/favorite.interface';
 import { UserInfo } from './../../interfaces/user-info.interface';
 import { Component, Input, OnInit } from '@angular/core';
 import { PlayersService } from '../../services/players.service';
@@ -11,35 +12,9 @@ import { ModalController } from '@ionic/angular';
 })
 export class ShortcutComponent implements OnInit {
   @Input() user: UserInfo;
-
-  mockFavorites = [
-    {
-      title: 'soupy',
-      category: 'Player',
-      image:
-        'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/69/6926d43e27abb3d730544f008aa3f8dad36be0da_full.jpg',
-      id: 59544008,
-    },
-    {
-      title: 'spicy',
-      category: 'Player',
-      image:
-        'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/56/56e36ec470740cf8548996697e5cddb624af3508_full.jpg',
-      id: 56877930,
-    },
-    {
-      title: 'OG',
-      category: 'Team',
-      image: 'https://riki.dotabuff.com/t/l/11jt47R2Yjx.png',
-    },
-  ];
-
   selectedTab = 'featured';
 
-  constructor(
-    private playersService: PlayersService,
-    private modalController: ModalController
-  ) {}
+  constructor(private modalController: ModalController) {}
 
   ngOnInit() {}
 
@@ -47,12 +22,12 @@ export class ShortcutComponent implements OnInit {
     console.log(detail.value);
   }
 
-  async openFavorite(favorite) {
-    const type = favorite.category.toLowerCase();
+  async openFavorite(favorite: Favorite) {
+    const type = favorite.type.toLowerCase();
 
     switch (type) {
       case 'player':
-        this.openProfile(favorite.id);
+        this.openProfile(Number(favorite.favoriteId));
         break;
       case 'team':
         console.log('tiimi');

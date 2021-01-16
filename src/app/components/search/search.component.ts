@@ -1,3 +1,4 @@
+import { UserService } from './../../services/user.service';
 import { AuthService } from './../../services/auth.service';
 import { Router } from '@angular/router';
 import { PlayersService } from './../../services/players.service';
@@ -28,7 +29,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   constructor(
     private modalCtrl: ModalController,
     public searchService: SearchService,
-    private playersService: PlayersService,
+    private userService: UserService,
     private router: Router,
     private auth: AuthService
   ) {}
@@ -52,7 +53,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   handleLinkEvent(playerId: number) {
-    this.playersService
+    this.userService
       .linkProfile(playerId)
       .subscribe(({ message, user }: any) => {
         this.auth.user.next(user);

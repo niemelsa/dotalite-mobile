@@ -16,8 +16,8 @@ import firebase from 'firebase';
 export class AuthService {
   public user: BehaviorSubject<UserInfo> = new BehaviorSubject(null);
   public token: BehaviorSubject<string> = new BehaviorSubject(null);
-  apiUrl = 'https://dotalite.herokuapp.com';
-  // apiUrl = 'http://localhost:3000';
+  // apiUrl = 'https://dotalite.herokuapp.com';
+  apiUrl = 'http://localhost:3000';
 
   constructor(
     private afAuth: AngularFireAuth,
@@ -29,7 +29,7 @@ export class AuthService {
         // prevents http call to server incase user logs out
         tap((user) => !user && this.logOutUser()),
         filter<firebase.User>(Boolean),
-        mergeMap((user) => user.getIdToken()),
+        mergeMap((user) => user.getIdToken(true)),
         tap((token) => this.token.next(token)),
         switchMap(() => this.getUserInfo())
       )
@@ -51,6 +51,7 @@ export class AuthService {
 
   async logInUser(user: UserInfo) {
     this.user.next(user);
+    console.log(user);
   }
 
   async logInWithGoogle() {
