@@ -1,4 +1,3 @@
-import { AuthCallbackComponent } from './components/auth-callback/auth-callback.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -8,10 +7,6 @@ const routes: Routes = [
     redirectTo: '/login',
     pathMatch: 'full',
   },
-  // {
-  //   path: 'auth/callback',
-  //   component: AuthCallbackComponent,
-  // },
   {
     path: 'tabs',
     loadChildren: () =>

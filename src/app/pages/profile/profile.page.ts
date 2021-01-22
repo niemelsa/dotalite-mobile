@@ -1,19 +1,21 @@
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { FavoritesService } from './../../services/favorites.service';
 import { AuthService } from './../../services/auth.service';
 import { PlayersService } from './../../services/players.service';
 import { PlayerData } from '../../interfaces/player-data.interface';
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { catchError, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-profile-page',
   templateUrl: './profile.page.html',
 })
 export class ProfilePage implements OnInit {
-  player: PlayerData;
-  selectedTab = 'Overview';
-  @Input() userId: any;
+  public player$: Observable<PlayerData>;
+  public isFavorited: boolean;
+  public selectedTab = 'Overview';
+  @Input() playerId: any;
 
   constructor(
     private modalCtrl: ModalController,
@@ -23,25 +25,22 @@ export class ProfilePage implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.getPlayerData();
+    this.player$ = this.playersService
+      .getPlayerData(this.playerId)
+      .pipe(tap(() => this.setIsFavorited()));
   }
 
-  isFavorited(): boolean {
+  private setIsFavorited(): void {
+    let playerId = this.playerId;
     let favorites = this.auth.user.getValue().favorites;
 
-    if (
+    this.isFavorited =
       favorites &&
-      favorites.some((e) =>
-        e.favoriteId.includes(this.player.profile.account_id)
-      )
-    ) {
-      return true;
-    } else {
-      return false;
-    }
+      playerId &&
+      favorites.some((e) => e.favoriteId.includes(playerId));
   }
 
-  toggleFavorite(player: PlayerData) {
+  public toggleFavorite(player: PlayerData) {
     let {
       profile: { personaname: title, avatarfull: image, account_id: playerId },
     } = player;
@@ -53,28 +52,31 @@ export class ProfilePage implements OnInit {
       type: 'Player',
     };
 
-    let request: Observable<any> = this.isFavorited()
+    let request: Observable<any> = this.isFavorited
       ? this.favoritesService.removeFromFavorites(favorite)
       : this.favoritesService.addToFavorites(favorite);
 
-    request.subscribe(({ user }) => {
-      console.log('toggled favorite: ', user);
-      this.auth.user.next(user);
-    });
+    request
+      .pipe(
+        catchError(() => {
+          return of(null);
+        })
+      )
+      .subscribe(({ user }) => {
+        if (user) {
+          this.auth.user.next(user);
+        }
+
+        this.setIsFavorited();
+      });
+
+    this.isFavorited = !this.isFavorited;
   }
 
   dismiss() {
     this.modalCtrl.dismiss({
       dismissed: true,
     });
-  }
-
-  getPlayerData() {
-    this.playersService
-      .getPlayerData(this.userId)
-      .subscribe((player: PlayerData) => {
-        this.player = player;
-      });
   }
 
   handleTabChanged(newTab: string) {

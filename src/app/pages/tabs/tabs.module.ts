@@ -1,4 +1,3 @@
-import { AuthCallbackComponent } from './../../components/auth-callback/auth-callback.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -20,6 +19,6 @@ import { ProfilePageModule } from '../profile/profile.module';
     HomePageModule,
     ProfilePageModule,
   ],
-  declarations: [TabsPage, AuthCallbackComponent],
+  declarations: [TabsPage],
 })
 export class TabsPageModule {}

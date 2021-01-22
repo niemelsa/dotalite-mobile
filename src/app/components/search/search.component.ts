@@ -1,7 +1,6 @@
 import { UserService } from './../../services/user.service';
 import { AuthService } from './../../services/auth.service';
 import { Router } from '@angular/router';
-import { PlayersService } from './../../services/players.service';
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { SearchService } from '../../services/search.service';

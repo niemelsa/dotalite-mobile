@@ -42,7 +42,7 @@ export class ShortcutComponent implements OnInit {
     const modal = await this.modalController.create({
       component: ProfilePage,
       componentProps: {
-        userId: id,
+        playerId: id,
       },
       cssClass: 'player-modal',
     });

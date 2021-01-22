@@ -1,5 +1,3 @@
-import { Router } from '@angular/router';
-import { AuthService } from './../../services/auth.service';
 import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
 import { SearchResponse } from '../../interfaces/search-response.interface';
 import { PlayersService } from '../../services/players.service';
@@ -32,7 +30,7 @@ export class SearchResultsComponent implements OnInit {
     const modal = await this.modalController.create({
       component: ProfilePage,
       componentProps: {
-        userId: id,
+        playerId: id,
       },
       cssClass: 'player-modal',
     });

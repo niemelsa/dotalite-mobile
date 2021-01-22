@@ -1,20 +1,22 @@
 import { PlayerData } from './../../interfaces/player-data.interface';
 import { SearchComponent } from './../search/search.component';
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnDestroy } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { PlayersService } from '../../services/players.service';
 import { UserInfo } from '../../interfaces/user-info.interface';
 import { ModalController } from '@ionic/angular';
 import { ProfilePage } from 'src/app/pages/profile/profile.page';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-welcome',
   templateUrl: './welcome.component.html',
   styleUrls: ['./welcome.component.scss'],
 })
-export class WelcomeComponent {
+export class WelcomeComponent implements OnDestroy {
+  private playerSubscription: Subscription;
   private _user: UserInfo;
-  public player: PlayerData = null;
+  public player: PlayerData;
 
   @Input()
   set user(val: UserInfo) {
@@ -39,7 +41,9 @@ export class WelcomeComponent {
     public playersService: PlayersService,
     public authService: AuthService,
     public modalController: ModalController
-  ) {}
+  ) {
+    this.player = null;
+  }
 
   async openSearch() {
     const modal = await this.modalController.create({
@@ -57,7 +61,7 @@ export class WelcomeComponent {
     const modal = await this.modalController.create({
       component: ProfilePage,
       componentProps: {
-        userId: id,
+        playerId: id,
       },
       cssClass: 'player-modal',
     });
@@ -69,11 +73,15 @@ export class WelcomeComponent {
 
   getPlayerData(playerId: string) {
     if (playerId) {
-      this.playersService
+      this.playerSubscription = this.playersService
         .getPlayerData(playerId)
         .subscribe((player: PlayerData) => {
           this.player = player;
         });
     }
+  }
+
+  ngOnDestroy() {
+    this.playerSubscription.unsubscribe();
   }
 }

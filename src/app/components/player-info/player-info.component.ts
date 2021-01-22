@@ -31,6 +31,7 @@ export class PlayerInfoComponent implements OnInit {
     //   .subscribe((player-info) => {
     //     this.playerData = player-info;
     //   });
+    console.log(this.player);
   }
 
   calculateWinrate(wins, losses): string {

@@ -1,4 +1,4 @@
-<ng-container *ngIf="player; else loading">
+<ng-container *ngIf="player$ | async as player; else loading">
   <ion-toolbar>
     <ion-buttons slot="start" (click)="dismiss()">
       <ion-button>
@@ -10,7 +10,7 @@
         <ion-icon
           color="dark"
           slot="icon-only"
-          [name]="isFavorited() ? 'heart' : 'heart-outline'"
+          [name]="isFavorited ? 'heart' : 'heart-outline'"
         ></ion-icon>
       </ion-button>
       <ion-button>
