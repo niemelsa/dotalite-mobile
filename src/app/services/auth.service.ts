@@ -15,8 +15,12 @@ import firebase from 'firebase';
   providedIn: 'root',
 })
 export class AuthService {
-  public user: BehaviorSubject<UserInfo> = new BehaviorSubject(null);
-  public token: BehaviorSubject<string> = new BehaviorSubject(null);
+  private userSource: BehaviorSubject<UserInfo> = new BehaviorSubject(null);
+  private tokenSource: BehaviorSubject<string> = new BehaviorSubject(null);
+
+  public user$: Observable<UserInfo> = this.userSource.asObservable();
+  public token$: Observable<string> = this.tokenSource.asObservable();
+
   private apiUrl: string = environment.apiUrl;
 
   constructor(
@@ -30,25 +34,37 @@ export class AuthService {
         tap((user) => !user && this.logOutUser()),
         filter<firebase.User>(Boolean),
         mergeMap((user) => user.getIdToken(true)),
-        tap((token) => this.token.next(token)),
+        tap((token) => this.updateTokenValue(token)),
         switchMap(() => this.getUserInfo())
       )
       .subscribe((user) => this.logInUser(user));
+  }
+
+  get tokenValue() {
+    return this.tokenSource.getValue();
   }
 
   private getUserInfo(): Observable<UserInfo> {
     return this.http.get<UserInfo>(`${this.apiUrl}/auth/signin`);
   }
 
+  public updateTokenValue(token: string): void {
+    this.tokenSource.next(token);
+  }
+
+  public updateUserValue(user: UserInfo): void {
+    this.userSource.next(user);
+  }
+
   public async logOutUser() {
     this.afAuth.signOut().then(() => {
-      this.token.next(null);
-      this.user.next(null);
+      this.updateTokenValue(null);
+      this.updateUserValue(null);
     });
   }
 
   public async logInUser(user: UserInfo) {
-    this.user.next(user);
+    this.updateUserValue(user);
     await this.router.navigate(['tabs']);
 
     console.log(user);

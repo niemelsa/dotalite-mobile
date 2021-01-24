@@ -1,0 +1,23 @@
+<ion-toolbar>
+  <ion-buttons slot="start" (click)="dismiss()">
+    <ion-button>
+      <ion-icon color="dark" slot="icon-only" name="chevron-back"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+  <ion-buttons slot="end">
+    <ion-button (click)="toggleFavorite(player)">
+      <ion-icon
+        color="dark"
+        slot="icon-only"
+        [name]="isFavorited ? 'heart' : 'heart-outline'"
+      ></ion-icon>
+    </ion-button>
+    <ion-button>
+      <ion-icon
+        color="dark"
+        slot="icon-only"
+        name="ellipsis-vertical"
+      ></ion-icon>
+    </ion-button>
+  </ion-buttons>
+</ion-toolbar>

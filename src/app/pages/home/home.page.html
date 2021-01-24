@@ -15,10 +15,13 @@
 </ion-header>
 <ion-content>
   <!-- welcome component -->
-  <app-welcome [user]="auth.user | async"></app-welcome>
+  <app-welcome
+    [user]="user$ | async"
+    [player]="userPlayerData$ | async"
+  ></app-welcome>
 
   <div class="content-wrapper">
     <!-- shortcut component -->
-    <app-shortcut [user]="auth.user | async"></app-shortcut>
+    <app-shortcut [user]="user$ | async"></app-shortcut>
   </div>
 </ion-content>

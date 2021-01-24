@@ -1,3 +1,4 @@
+import { PlayerToolbarComponent } from './../../components/player-toolbar/player-toolbar.component';
 import { PlayerInfoComponent } from '../../components/player-info/player-info.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -22,6 +23,7 @@ import { PlayerHeroesComponent } from '../../components/player-heroes/player-her
     PlayerOverviewComponent,
     PlayerMatchesComponent,
     PlayerHeroesComponent,
+    PlayerToolbarComponent,
   ],
 })
 export class ProfilePageModule {}

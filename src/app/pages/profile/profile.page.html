@@ -1,27 +1,10 @@
 <ng-container *ngIf="player$ | async as player; else loading">
-  <ion-toolbar>
-    <ion-buttons slot="start" (click)="dismiss()">
-      <ion-button>
-        <ion-icon color="dark" slot="icon-only" name="chevron-back"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-    <ion-buttons slot="end">
-      <ion-button (click)="toggleFavorite(player)">
-        <ion-icon
-          color="dark"
-          slot="icon-only"
-          [name]="isFavorited ? 'heart' : 'heart-outline'"
-        ></ion-icon>
-      </ion-button>
-      <ion-button>
-        <ion-icon
-          color="dark"
-          slot="icon-only"
-          name="ellipsis-vertical"
-        ></ion-icon>
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
+  <app-player-toolbar
+    [user]="user$ | async"
+    [player]="player"
+    (favoriteToggledEvent)="handleFavoriteToggled($event)"
+    (dismissClickedEvent)="handleDismissClicked($event);"
+  ></app-player-toolbar>
 
   <app-player-info
     [player]="player"

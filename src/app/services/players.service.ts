@@ -12,6 +12,7 @@ export class PlayersService {
   constructor(private http: HttpClient) {}
 
   getPlayerData(playerId: string): Observable<any> {
+    console.log('IN PLAYERS SERVICE: ', playerId);
     return this.http.get(`${this.apiUrl}/players/${playerId}`);
   }
 }

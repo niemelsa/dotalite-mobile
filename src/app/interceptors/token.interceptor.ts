@@ -11,8 +11,8 @@ export class TokenInterceptor implements HttpInterceptor {
   constructor(private auth: AuthService) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler) {
-    let token = this.auth.token.value;
-    let modified = this.addToken(request, token);
+    const token = this.auth.tokenValue;
+    const modified = this.addToken(request, token);
 
     return next.handle(modified);
   }

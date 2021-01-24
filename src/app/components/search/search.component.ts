@@ -55,7 +55,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.userService
       .linkProfile(playerId)
       .subscribe(({ message, user }: any) => {
-        this.auth.user.next(user);
+        this.auth.updateUserValue(user);
         console.log(message);
         this.router.navigate(['tabs']).then(() => {
           this.dismiss();

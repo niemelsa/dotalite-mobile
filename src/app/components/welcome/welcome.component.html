@@ -1,42 +1,22 @@
-<ng-container *ngIf="authService.user | async as user">
-  <ng-container *ngIf="user.playerId; else link">
-    <ng-container *ngIf="player; else loading">
-      <ion-item
-        mode="md"
-        button
-        (click)="openProfile(player.profile.account_id)"
-        lines="none"
-      >
-        <ion-label>
-          <p>Welcome back,</p>
-          <h1>{{ player.profile.personaname }}</h1>
-        </ion-label>
-        <ion-thumbnail>
-          <img [src]="player.profile.avatarfull" alt="user avatar" />
-        </ion-thumbnail>
-      </ion-item>
-    </ng-container>
+<ng-container *ngIf="user && player; else loading">
+  <ng-container *ngIf="user.playerId; then welcome; else link"></ng-container>
 
-    <ng-template #loading>
-      <div class="custom-skeleton">
-        <ion-item lines="none">
-          <ion-label>
-            <ion-skeleton-text animated style="width: 65%"></ion-skeleton-text>
-            <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
-          </ion-label>
-          <ion-thumbnail>
-            <ion-skeleton-text animated></ion-skeleton-text>
-          </ion-thumbnail>
-        </ion-item>
-      </div>
-    </ng-template>
-  </ng-container>
+  <ng-template #welcome>
+    <ion-item mode="md" button (click)="openProfile()" lines="none">
+      <ion-label>
+        <p>Welcome back,</p>
+        <h1>{{ player.profile.personaname }}</h1>
+      </ion-label>
+      <ion-thumbnail>
+        <img [src]="player.profile.avatarfull" alt="user avatar" />
+      </ion-thumbnail>
+    </ion-item>
+  </ng-template>
 
   <ng-template #link>
     <ion-item
       button
-      *ngIf="!user.playerId"
-      (click)="openSearch()"
+      (click)="initiateLinkingPlayer()"
       lines="none"
       class="add-profile"
     >
@@ -50,3 +30,17 @@
     </ion-item>
   </ng-template>
 </ng-container>
+
+<ng-template #loading>
+  <div class="custom-skeleton">
+    <ion-item lines="none">
+      <ion-label>
+        <ion-skeleton-text animated style="width: 65%"></ion-skeleton-text>
+        <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+      </ion-label>
+      <ion-thumbnail>
+        <ion-skeleton-text animated></ion-skeleton-text>
+      </ion-thumbnail>
+    </ion-item>
+  </div>
+</ng-template>
