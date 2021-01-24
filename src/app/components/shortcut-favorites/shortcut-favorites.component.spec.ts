@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { TrendingComponent } from './trending.component';
+import { ShortcutFavoritesComponent } from './shortcut-favorites.component';
 
-describe('TrendingComponent', () => {
-  let component: TrendingComponent;
-  let fixture: ComponentFixture<TrendingComponent>;
+describe('ShortcutFavoritesComponent', () => {
+  let component: ShortcutFavoritesComponent;
+  let fixture: ComponentFixture<ShortcutFavoritesComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TrendingComponent ],
+      declarations: [ ShortcutFavoritesComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(TrendingComponent);
+    fixture = TestBed.createComponent(ShortcutFavoritesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

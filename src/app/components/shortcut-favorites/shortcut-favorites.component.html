@@ -1,0 +1,28 @@
+<ion-list class="ion-padding" lines="none">
+  <ng-container
+    *ngIf="user.favorites && user.favorites.length > 0; else noFavorites"
+  >
+    <ion-item
+      mode="md"
+      button
+      *ngFor="let favorite of user.favorites"
+      (click)="openFavorite(favorite)"
+    >
+      <ion-thumbnail slot="start">
+        <img [src]="favorite.image" />
+      </ion-thumbnail>
+      <ion-label>
+        <h3>{{ favorite.title }}</h3>
+        <p>{{ favorite.type }}</p>
+      </ion-label>
+    </ion-item>
+  </ng-container>
+
+  <ng-template #noFavorites>
+    <ion-item>
+      <ion-label>
+        <h3>Add favorites to show them here</h3>
+      </ion-label>
+    </ion-item>
+  </ng-template>
+</ion-list>

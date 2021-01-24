@@ -1,19 +1,4 @@
-ion-list {
-  background-color: #23232e;
-
-  ion-item {
-    margin: 0px 20px 10px 20px;
-    border-radius: 10px;
-    --min-height: 70px;
-    --background: var(--ion-color-light-shade);
-  }
-
-  ion-thumbnail {
-    --border-radius: 5px;
-  }
-}
-
 ion-segment {
   //--background: var(--ion-color-light-shade);
-  --background: transparent;
+  // --background: transparent;
 }

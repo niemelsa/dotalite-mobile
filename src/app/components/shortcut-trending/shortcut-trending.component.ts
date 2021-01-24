@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-trending',
-  templateUrl: './trending.component.html',
-  styleUrls: ['./trending.component.scss'],
+  selector: 'app-shortcut-trending',
+  templateUrl: './shortcut-trending.component.html',
+  styleUrls: ['./shortcut-trending.component.scss'],
 })
-export class TrendingComponent implements OnInit {
+export class ShortcutTrendingComponent implements OnInit {
   slideOpts = {
     slidesPerView: 'auto',
   };

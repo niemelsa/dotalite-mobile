@@ -1,0 +1,29 @@
+ion-card {
+  // max-width: 150px;
+  margin: 0;
+  // margin-right: 10px;
+  margin: 0 5px;
+
+  ion-card-header {
+    position: absolute;
+    bottom: 0px;
+
+    ion-card-subtitle {
+      margin: 0;
+    }
+
+    ion-card-title {
+      font-size: 18px;
+      font-weight: 500;
+    }
+  }
+}
+
+ion-slide {
+  width: auto;
+}
+
+ion-slides {
+  background: #23232e;
+  min-height: 230px;
+}

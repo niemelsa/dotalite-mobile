@@ -1,3 +1,4 @@
+import { ShortcutFavoritesComponent } from './../../components/shortcut-favorites/shortcut-favorites.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -7,7 +8,7 @@ import { IonicModule } from '@ionic/angular';
 import { HomePageRoutingModule } from './home-routing.module';
 
 import { HomePage } from './home.page';
-import { TrendingComponent } from 'src/app/components/trending/trending.component';
+import { ShortcutTrendingComponent } from 'src/app/components/shortcut-trending/shortcut-trending.component';
 import { ShortcutComponent } from 'src/app/components/shortcut/shortcut.component';
 import { WelcomeComponent } from '../../components/welcome/welcome.component';
 import { SearchComponent } from '../../components/search/search.component';
@@ -25,12 +26,13 @@ import { PipesModule } from '../../pipes/pipes.module';
   ],
   declarations: [
     HomePage,
-    TrendingComponent,
+    ShortcutTrendingComponent,
     ShortcutComponent,
     WelcomeComponent,
     SearchComponent,
     NotificationsComponent,
     SearchResultsComponent,
+    ShortcutFavoritesComponent,
   ],
 })
 export class HomePageModule {}

@@ -38,10 +38,6 @@ export class AppComponent {
     });
   }
 
-  onToggleColorTheme(event) {
-    document.body.classList.toggle('dark', !event.detail.checked);
-  }
-
   async handleLogin() {
     await this.router.navigate(['login']);
   }
@@ -52,10 +48,8 @@ export class AppComponent {
   }
 
   toggleTheme() {
-    if (this.dark) {
-      document.body.classList.toggle('dark', true);
-    } else {
-      document.body.classList.toggle('dark', false);
-    }
+    this.dark
+      ? document.body.classList.toggle('dark', true)
+      : document.body.classList.toggle('dark', false);
   }
 }

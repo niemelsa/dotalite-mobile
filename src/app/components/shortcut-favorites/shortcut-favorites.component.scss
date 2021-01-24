@@ -1,0 +1,15 @@
+ion-item {
+  --background: var(--ion-color-light-shade);
+  margin-bottom: 8px;
+  --border-radius: 5px;
+  --padding-top: 0px;
+  --padding-bottom: 0px;
+  ion-thumbnail {
+    --border-radius: 5px;
+  }
+}
+
+ion-list {
+  background: #23232e;
+  min-height: 230px;
+}

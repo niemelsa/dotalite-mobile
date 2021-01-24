@@ -2,6 +2,7 @@
   <ng-container *ngIf="user.playerId; else link">
     <ng-container *ngIf="player; else loading">
       <ion-item
+        mode="md"
         button
         (click)="openProfile(player.profile.account_id)"
         lines="none"

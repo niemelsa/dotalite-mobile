@@ -1,9 +1,13 @@
 import { Favorite } from './../../interfaces/favorite.interface';
 import { UserInfo } from './../../interfaces/user-info.interface';
 import { Component, Input, OnInit } from '@angular/core';
-import { PlayersService } from '../../services/players.service';
 import { ProfilePage } from 'src/app/pages/profile/profile.page';
 import { ModalController } from '@ionic/angular';
+
+enum SelectedTab {
+  Featured = 'featured',
+  Favorites = 'favorites',
+}
 
 @Component({
   selector: 'app-shortcut',
@@ -22,33 +26,7 @@ export class ShortcutComponent implements OnInit {
     console.log(detail.value);
   }
 
-  async openFavorite(favorite: Favorite) {
-    const type = favorite.type.toLowerCase();
-
-    switch (type) {
-      case 'player':
-        this.openProfile(Number(favorite.favoriteId));
-        break;
-      case 'team':
-        console.log('tiimi');
-        break;
-      case 'tournament':
-        console.log('turnaus');
-        break;
-    }
-  }
-
-  async openProfile(id: number) {
-    const modal = await this.modalController.create({
-      component: ProfilePage,
-      componentProps: {
-        playerId: id,
-      },
-      cssClass: 'player-modal',
-    });
-    await modal.present();
-
-    const { data } = await modal.onWillDismiss();
-    console.log(data);
+  isSelected(tab: SelectedTab) {
+    return this.selectedTab === tab;
   }
 }
