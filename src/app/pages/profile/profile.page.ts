@@ -1,3 +1,4 @@
+import { ToastService } from './../../services/toast.service';
 import { Observable, of } from 'rxjs';
 import { FavoritesService } from './../../services/favorites.service';
 import { AuthService } from './../../services/auth.service';
@@ -21,7 +22,8 @@ export class ProfilePage implements OnInit {
     private modalCtrl: ModalController,
     private playersService: PlayersService,
     public auth: AuthService,
-    private favoritesService: FavoritesService
+    private favoritesService: FavoritesService,
+    private toast: ToastService
   ) {}
 
   ngOnInit() {
@@ -31,8 +33,8 @@ export class ProfilePage implements OnInit {
   }
 
   private setIsFavorited(): void {
-    let playerId = this.playerId;
-    let favorites = this.auth.user.getValue().favorites;
+    const playerId = this.playerId;
+    const favorites = this.auth.user.getValue().favorites;
 
     this.isFavorited =
       favorites &&
@@ -41,30 +43,33 @@ export class ProfilePage implements OnInit {
   }
 
   public toggleFavorite(player: PlayerData) {
-    let {
+    const {
       profile: { personaname: title, avatarfull: image, account_id: playerId },
     } = player;
 
-    let favorite = {
+    const favorite = {
       title,
       image,
       favoriteId: playerId,
       type: 'Player',
     };
 
-    let request: Observable<any> = this.isFavorited
+    const request: Observable<any> = this.isFavorited
       ? this.favoritesService.removeFromFavorites(favorite)
       : this.favoritesService.addToFavorites(favorite);
 
     request
       .pipe(
-        catchError(() => {
-          return of(null);
+        catchError((error) => {
+          return of(null, error);
         })
       )
-      .subscribe(({ user }) => {
+      .subscribe(({ user, error }) => {
         if (user) {
           this.auth.user.next(user);
+          this.toast.presentFavoritesToast({ title, status: this.isFavorited });
+        } else {
+          this.toast.presentErrorToast(error);
         }
 
         this.setIsFavorited();

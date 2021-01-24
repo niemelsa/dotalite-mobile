@@ -46,6 +46,7 @@ ion-header {
   border: none;
 }
 
+/* IONIC GLOBAL MODAL AND TOAST CLASSES */
 .player-modal {
   .modal-wrapper {
     background-color: #4d4855;
@@ -71,6 +72,19 @@ ion-header {
     ion-toolbar {
       --background: transparent;
     }
+  }
+}
+
+.toast {
+  --border-radius: 5px;
+  --color: white;
+
+  &.green {
+    --background: #5a7944;
+  }
+
+  &.red {
+    --background: #793333;
   }
 }
 
