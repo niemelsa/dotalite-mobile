@@ -17,7 +17,7 @@
         </ion-menu-toggle>
       </ion-list>
 
-      <ng-container *ngIf="authService.user | async as user; else loggedOut">
+      <ng-container *ngIf="authService.user$ | async as user; else loggedOut">
         <ion-list lines="none">
           <ion-menu-toggle>
             <ion-item>

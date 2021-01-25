@@ -1,12 +1,5 @@
-import { PlayersPage } from './../players/players.page';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HeroesPage } from '../heroes/heroes.page';
-import { HomePage } from '../home/home.page';
-import { LeaderboardsPage } from '../leaderboards/leaderboards.page';
-import { MatchesPage } from '../matches/matches.page';
-import { ProfilePage } from '../profile/profile.page';
-import { TournamentsPage } from '../tournaments/tournaments.page';
 
 import { TabsPage } from './tabs.page';
 
@@ -31,6 +24,13 @@ const routes: Routes = [
         path: 'players',
         loadChildren: () =>
           import('../players/players.module').then((m) => m.PlayersPageModule),
+      },
+      {
+        path: 'players/:id',
+        loadChildren: () =>
+          import('../players-profile/players-profile.module').then(
+            (m) => m.PlayersProfilePageModule
+          ),
       },
       {
         path: 'matches',

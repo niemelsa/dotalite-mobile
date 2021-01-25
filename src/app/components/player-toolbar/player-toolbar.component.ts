@@ -9,7 +9,7 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
-import { FavoritesActionType } from 'src/app/pages/profile/profile.page';
+import { FavoritesActionType } from 'src/app/pages/players-profile/players-profile.page';
 
 @Component({
   selector: 'app-player-toolbar',
@@ -17,12 +17,13 @@ import { FavoritesActionType } from 'src/app/pages/profile/profile.page';
   styleUrls: ['./player-toolbar.component.scss'],
 })
 export class PlayerToolbarComponent implements OnInit, OnChanges {
-  public isFavorited: boolean;
+  // public isFavorited: boolean;
 
+  @Input() isFavorited: boolean;
   @Input() user: UserInfo;
   @Input() player: PlayerData;
 
-  @Output() dismissClickedEvent = new EventEmitter();
+  @Output() backButtonClicked = new EventEmitter();
   @Output() favoriteToggledEvent = new EventEmitter();
 
   constructor() {}
@@ -51,8 +52,8 @@ export class PlayerToolbarComponent implements OnInit, OnChanges {
       favorites.some((e) => e.favoriteId.includes(playerId));
   }
 
-  dismiss() {
-    this.dismissClickedEvent.emit();
+  navigateBack() {
+    this.backButtonClicked.emit();
   }
 
   toggleFavorite() {

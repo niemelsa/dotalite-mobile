@@ -1,13 +1,15 @@
-import { PresentationService } from './../../services/presentation.service';
-import { UserInfo } from './../../interfaces/user-info.interface';
+import { ActivatedRoute } from '@angular/router';
+import { PresentationService } from '../../services/presentation.service';
+import { UserInfo } from '../../interfaces/user-info.interface';
 import { Observable, of } from 'rxjs';
-import { FavoritesService } from './../../services/favorites.service';
-import { AuthService } from './../../services/auth.service';
-import { PlayersService } from './../../services/players.service';
+import { FavoritesService } from '../../services/favorites.service';
+import { AuthService } from '../../services/auth.service';
+import { PlayersService } from '../../services/players.service';
 import { PlayerData } from '../../interfaces/player-data.interface';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { catchError } from 'rxjs/operators';
+import { catchError, switchMap } from 'rxjs/operators';
+import { Location } from '@angular/common';
 
 export enum FavoritesActionType {
   Remove = 'remove',
@@ -15,27 +17,35 @@ export enum FavoritesActionType {
 }
 
 @Component({
-  selector: 'app-profile-page',
-  templateUrl: './profile.page.html',
+  selector: 'app-players-profile-page',
+  templateUrl: './players-profile.page.html',
+  styleUrls: ['./players-profile.page.scss'],
 })
-export class ProfilePage implements OnInit {
-  @Input() playerId: string;
-
+export class PlayersProfilePage implements OnInit {
   public player$: Observable<PlayerData>;
   public user$: Observable<UserInfo>;
+  public playerId$: Observable<any>;
   public selectedTab = 'Overview';
+  public isFavorited: boolean;
 
   constructor(
-    private modalCtrl: ModalController,
     private playersService: PlayersService,
     public auth: AuthService,
     private favoritesService: FavoritesService,
-    private toast: PresentationService
+    private toast: PresentationService,
+    private route: ActivatedRoute,
+    private location: Location
   ) {}
 
   ngOnInit() {
-    this.player$ = this.playersService.getPlayerData(this.playerId);
+    this.player$ = this.route.paramMap.pipe(
+      switchMap((params) => {
+        const id = params.get('id');
+        return this.playersService.getPlayerData(id);
+      })
+    );
     this.user$ = this.auth.user$;
+    this.isFavorited = false;
   }
 
   // private setIsFavorited(): void {
@@ -137,8 +147,8 @@ export class ProfilePage implements OnInit {
     // }
   }
 
-  handleDismissClicked() {
-    this.modalCtrl.dismiss();
+  handleNavigateBack() {
+    this.location.back();
   }
 
   handleTabChanged(newTab: string) {

@@ -1,3 +1,4 @@
+import { PlayersProfilePage } from './../players-profile/players-profile.page';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 

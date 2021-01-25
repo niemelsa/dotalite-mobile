@@ -1,8 +1,14 @@
-<ng-container *ngIf="user && player; else loading">
+<ng-container *ngIf="user; else loading">
   <ng-container *ngIf="user.playerId; then welcome; else link"></ng-container>
 
   <ng-template #welcome>
-    <ion-item mode="md" button (click)="openProfile()" lines="none">
+    <ion-item
+      *ngIf="player; else loading"
+      mode="md"
+      button
+      [routerLink]="['/tabs/players', user.playerId]"
+      lines="none"
+    >
       <ion-label>
         <p>Welcome back,</p>
         <h1>{{ player.profile.personaname }}</h1>

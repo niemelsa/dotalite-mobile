@@ -1,7 +1,7 @@
 import { switchMap, filter } from 'rxjs/operators';
 import { PlayersService } from './../../services/players.service';
 import { PlayerData } from './../../interfaces/player-data.interface';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { UserInfo } from './../../interfaces/user-info.interface';
 import { AuthService } from '../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
@@ -30,7 +30,9 @@ export class HomePage implements OnInit {
     this.userPlayerData$ = this.auth.user$.pipe(
       filter<UserInfo>(Boolean),
       switchMap((user) => {
-        return this.playersService.getPlayerData(user.playerId);
+        if (user.playerId) {
+          return this.playersService.getPlayerData(user.playerId);
+        }
       })
     );
   }

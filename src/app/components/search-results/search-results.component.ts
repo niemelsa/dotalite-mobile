@@ -2,7 +2,7 @@ import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
 import { SearchResponse } from '../../interfaces/search-response.interface';
 import { PlayersService } from '../../services/players.service';
 import { ModalController } from '@ionic/angular';
-import { ProfilePage } from 'src/app/pages/profile/profile.page';
+import { PlayersProfilePage } from 'src/app/pages/players-profile/players-profile.page';
 
 @Component({
   selector: 'app-search-results',
@@ -28,7 +28,7 @@ export class SearchResultsComponent implements OnInit {
 
   async openProfile(id: number) {
     const modal = await this.modalController.create({
-      component: ProfilePage,
+      component: PlayersProfilePage,
       componentProps: {
         playerId: id,
       },

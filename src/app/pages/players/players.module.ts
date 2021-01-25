@@ -9,12 +9,7 @@ import { PlayersPageRoutingModule } from './players-routing.module';
 import { PlayersPage } from './players.page';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    PlayersPageRoutingModule
-  ],
-  declarations: [PlayersPage]
+  imports: [CommonModule, FormsModule, IonicModule, PlayersPageRoutingModule],
+  declarations: [PlayersPage],
 })
 export class PlayersPageModule {}

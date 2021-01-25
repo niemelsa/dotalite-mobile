@@ -25,9 +25,4 @@ export class WelcomeComponent {
   async initiateLinkingPlayer(): Promise<void> {
     await this.present.presentLinkSearchModal();
   }
-
-  async openProfile(): Promise<void> {
-    console.log('opening profile: ', this.user.playerId);
-    await this.present.presentProfileModal(this.user.playerId);
-  }
 }

@@ -8,7 +8,7 @@ import { TabsPageRoutingModule } from './tabs-routing.module';
 
 import { TabsPage } from './tabs.page';
 import { HomePageModule } from '../home/home.module';
-import { ProfilePageModule } from '../profile/profile.module';
+import { PlayersProfilePageModule } from '../players-profile/players-profile.module';
 
 @NgModule({
   imports: [
@@ -17,7 +17,7 @@ import { ProfilePageModule } from '../profile/profile.module';
     IonicModule,
     TabsPageRoutingModule,
     HomePageModule,
-    ProfilePageModule,
+    PlayersProfilePageModule,
   ],
   declarations: [TabsPage],
 })

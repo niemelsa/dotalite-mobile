@@ -12,6 +12,11 @@ export class PlayersService {
   constructor(private http: HttpClient) {}
 
   getPlayerData(playerId: string): Observable<any> {
+    if (!playerId) {
+      console.log('no player id');
+      return;
+    }
+
     console.log('IN PLAYERS SERVICE: ', playerId);
     return this.http.get(`${this.apiUrl}/players/${playerId}`);
   }

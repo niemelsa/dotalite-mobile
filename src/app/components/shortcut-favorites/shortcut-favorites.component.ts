@@ -1,8 +1,7 @@
-import { ModalController } from '@ionic/angular';
+import { Router } from '@angular/router';
 import { Favorite } from './../../interfaces/favorite.interface';
 import { UserInfo } from './../../interfaces/user-info.interface';
 import { Component, Input, OnInit } from '@angular/core';
-import { ProfilePage } from 'src/app/pages/profile/profile.page';
 
 @Component({
   selector: 'app-shortcut-favorites',
@@ -12,7 +11,7 @@ import { ProfilePage } from 'src/app/pages/profile/profile.page';
 export class ShortcutFavoritesComponent implements OnInit {
   @Input() user: UserInfo;
 
-  constructor(private modalController: ModalController) {}
+  constructor(private router: Router) {}
 
   ngOnInit() {}
 
@@ -21,7 +20,7 @@ export class ShortcutFavoritesComponent implements OnInit {
 
     switch (type) {
       case 'player':
-        this.openProfile(Number(favorite.favoriteId));
+        this.router.navigate(['/tabs/players', favorite.favoriteId]);
         break;
       case 'team':
         console.log('tiimi');
@@ -30,19 +29,5 @@ export class ShortcutFavoritesComponent implements OnInit {
         console.log('turnaus');
         break;
     }
-  }
-
-  async openProfile(id: number) {
-    const modal = await this.modalController.create({
-      component: ProfilePage,
-      componentProps: {
-        playerId: id,
-      },
-      cssClass: 'player-modal',
-    });
-    await modal.present();
-
-    const { data } = await modal.onWillDismiss();
-    console.log(data);
   }
 }

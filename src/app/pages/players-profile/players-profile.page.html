@@ -3,7 +3,7 @@
     [user]="user$ | async"
     [player]="player"
     (favoriteToggledEvent)="handleFavoriteToggled($event)"
-    (dismissClickedEvent)="handleDismissClicked($event);"
+    (backButtonClicked)="handleNavigateBack($event);"
   ></app-player-toolbar>
 
   <app-player-info

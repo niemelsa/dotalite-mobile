@@ -1,10 +1,6 @@
 import { SearchComponent } from './../components/search/search.component';
 import { ToastController, ModalController } from '@ionic/angular';
 import { Injectable } from '@angular/core';
-import {
-  FavoritesActionType,
-  ProfilePage,
-} from '../pages/profile/profile.page';
 
 @Injectable({
   providedIn: 'root',
@@ -27,20 +23,8 @@ export class PresentationService {
     await modal.present();
   }
 
-  async presentProfileModal(id: string) {
-    const modal = await this.modalController.create({
-      component: ProfilePage,
-      componentProps: {
-        playerId: id,
-      },
-      cssClass: 'player-modal',
-    });
-
-    await modal.present();
-  }
-
   async presentFavoritesToast({ title, action }) {
-    const type = action === FavoritesActionType.Add;
+    const type = action === 'add';
 
     const toast = await this.toastController.create({
       message: type

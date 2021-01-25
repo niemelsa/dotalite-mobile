@@ -1,7 +1,7 @@
 import { Favorite } from './../../interfaces/favorite.interface';
 import { UserInfo } from './../../interfaces/user-info.interface';
 import { Component, Input, OnInit } from '@angular/core';
-import { ProfilePage } from 'src/app/pages/profile/profile.page';
+import { PlayersProfilePage } from 'src/app/pages/players-profile/players-profile.page';
 import { ModalController } from '@ionic/angular';
 
 enum SelectedTab {
