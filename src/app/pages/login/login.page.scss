@@ -1,7 +1,3 @@
-ion-content {
-  --background: transparent;
-}
-
 .buttons-wrapper {
   display: flex;
   flex-direction: column;
@@ -9,4 +5,55 @@ ion-content {
   align-items: center;
   height: 100%;
   width: 100%;
+}
+
+div.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  --background: transparent;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+ion-img {
+  width: 50%;
+}
+
+div.forgot {
+  font-size: 14px;
+  margin-bottom: 20px;
+
+  a {
+    color: rgb(175, 175, 175);
+  }
+}
+
+ion-item {
+  --background: linear-gradient(to bottom right, #1b1b2491, #1b1b24);
+  --border-radius: 5px;
+  --border-style: solid;
+  --border-color: rgba(255, 255, 255, 0.062);
+  --border-width: 1px;
+  margin-bottom: 5px;
+}
+
+ion-input {
+}
+
+ion-button {
+  margin-top: 10px;
+  --padding-top: 10px;
+  --padding-bottom: 10px;
+}
+
+form {
+  padding: 20px;
 }

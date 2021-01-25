@@ -1,5 +1,10 @@
+import { NotificationsComponent } from './../components/notifications/notifications.component';
 import { SearchComponent } from './../components/search/search.component';
-import { ToastController, ModalController } from '@ionic/angular';
+import {
+  ToastController,
+  ModalController,
+  PopoverController,
+} from '@ionic/angular';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -8,10 +13,23 @@ import { Injectable } from '@angular/core';
 export class PresentationService {
   constructor(
     private toastController: ToastController,
-    private modalController: ModalController
+    private modalController: ModalController,
+    private popoverController: PopoverController
   ) {}
 
-  async presentLinkSearchModal() {
+  async presentSearchModal() {
+    const modal = await this.modalController.create({
+      component: SearchComponent,
+      cssClass: 'search-modal',
+      componentProps: {
+        isLinkComponent: false,
+      },
+    });
+
+    await modal.present();
+  }
+
+  async presentPlayerLinkModal() {
     const modal = await this.modalController.create({
       component: SearchComponent,
       cssClass: 'search-modal',
@@ -53,5 +71,16 @@ export class PresentationService {
     });
 
     await toast.present();
+  }
+
+  async presentNotificationsPopover(event: any) {
+    const popover = await this.popoverController.create({
+      component: NotificationsComponent,
+      event,
+      mode: 'ios',
+      cssClass: 'notifications-popover',
+    });
+
+    await popover.present();
   }
 }

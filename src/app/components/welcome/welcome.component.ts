@@ -14,6 +14,7 @@ import { ModalController } from '@ionic/angular';
 export class WelcomeComponent {
   @Input() user: UserInfo;
   @Input() player: PlayerData;
+  @Input() isLinked: boolean;
 
   constructor(
     public playersService: PlayersService,
@@ -23,6 +24,6 @@ export class WelcomeComponent {
   ) {}
 
   async initiateLinkingPlayer(): Promise<void> {
-    await this.present.presentLinkSearchModal();
+    await this.present.presentPlayerLinkModal();
   }
 }

@@ -1,13 +1,11 @@
-import { switchMap, filter } from 'rxjs/operators';
+import { PresentationService } from './../../services/presentation.service';
+import { switchMap } from 'rxjs/operators';
 import { PlayersService } from './../../services/players.service';
 import { PlayerData } from './../../interfaces/player-data.interface';
 import { Observable, of } from 'rxjs';
 import { UserInfo } from './../../interfaces/user-info.interface';
 import { AuthService } from '../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
-import { ModalController, PopoverController } from '@ionic/angular';
-import { SearchComponent } from '../../components/search/search.component';
-import { NotificationsComponent } from '../../components/notifications/notifications.component';
 
 @Component({
   selector: 'app-home',
@@ -16,46 +14,36 @@ import { NotificationsComponent } from '../../components/notifications/notificat
 })
 export class HomePage implements OnInit {
   public user$: Observable<UserInfo>;
-  public userPlayerData$: Observable<PlayerData>;
+  public userPlayerData$: Observable<PlayerData | null>;
+  public isLinked: boolean;
 
   constructor(
     public auth: AuthService,
-    private modalController: ModalController,
-    private popoverCtrl: PopoverController,
-    private playersService: PlayersService
+    private playersService: PlayersService,
+    private presentation: PresentationService
   ) {}
 
   ngOnInit() {
     this.user$ = this.auth.user$;
     this.userPlayerData$ = this.auth.user$.pipe(
-      filter<UserInfo>(Boolean),
       switchMap((user) => {
-        if (user.playerId) {
+        if (user && user.playerId) {
+          this.isLinked = true;
           return this.playersService.getPlayerData(user.playerId);
+        } else {
+          this.isLinked = false;
+          return of(null);
         }
       })
     );
   }
 
   async toggleSearch() {
-    const modal = await this.modalController.create({
-      component: SearchComponent,
-      cssClass: 'search-modal',
-    });
-    await modal.present();
-
-    const { data } = await modal.onWillDismiss();
-    console.log(data);
+    await this.presentation.presentSearchModal();
   }
 
   async toggleNotifications(event: any) {
-    const popover = await this.popoverCtrl.create({
-      component: NotificationsComponent,
-      event,
-      mode: 'ios',
-      cssClass: 'notifications-popover',
-    });
-
-    return await popover.present();
+    // await this.presentation.presentNotificationsPopover(event);
+    console.log('notifications clicked');
   }
 }

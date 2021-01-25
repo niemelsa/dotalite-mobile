@@ -1,21 +1,39 @@
-<ion-content>
-  <div class="buttons-wrapper">
-    <ion-button shape="round" expand="full" (click)="googleLogin()"
-      >Login With Google</ion-button
+<!-- <div class="buttons-wrapper">
+  <ion-button shape="round" expand="full" (click)="googleLogin()"
+    >Sign In With Google</ion-button
+  >
+  <ion-button
+    shape="round"
+    expand="full"
+    color="tertiary"
+    (click)="facebookLogin()"
+    >Sign In with Facebook</ion-button
+  >
+  <ion-button shape="round" expand="full" color="dark" (click)="twitterLogin()"
+    >Sign In With Twitter</ion-button
+  >
+</div> -->
+<div class="ion-padding wrapper">
+  <div class="logo">
+    <ion-img
+      src="https://leanfrontiers.com/wp-content/uploads/2018/12/logo-placeholder-png.png"
     >
-    <ion-button
-      shape="round"
-      expand="full"
-      color="tertiary"
-      (click)="facebookLogin()"
-      >Login with Facebook</ion-button
-    >
-    <ion-button
-      shape="round"
-      expand="full"
-      color="dark"
-      (click)="twitterLogin()"
-      >Login With Twitter</ion-button
-    >
+    </ion-img>
   </div>
-</ion-content>
+
+  <form>
+    <ion-item>
+      <ion-icon name="mail-outline" slot="start"></ion-icon>
+      <ion-input placeholder="Your email" type="email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
+      <ion-input placeholder="Your password" type="password"></ion-input>
+    </ion-item>
+    <div class="forgot ion-text-end">
+      <a>Forgot password?</a>
+    </div>
+
+    <ion-button expand="block" size="default" type="submit">Sign In</ion-button>
+  </form>
+</div>

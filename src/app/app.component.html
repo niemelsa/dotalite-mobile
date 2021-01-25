@@ -34,7 +34,12 @@
         </ion-list>
 
         <ion-list lines="none">
-          <ion-item mode="md" button (click)="logout()" class="login-button">
+          <ion-item
+            mode="md"
+            button
+            (click)="handleLogoutClicked()"
+            class="login-button"
+          >
             <ion-icon slot="start" name="log-out"></ion-icon>
             <ion-label> Log Out </ion-label>
           </ion-item>
@@ -44,7 +49,11 @@
       <ng-template #loggedOut>
         <ion-list lines="none">
           <ion-menu-toggle>
-            <ion-item button (click)="handleLogin($event)" class="login-button">
+            <ion-item
+              button
+              (click)="handleLoginClicked()"
+              class="login-button"
+            >
               <ion-icon slot="start" name="log-in"></ion-icon>
               <ion-label>Log In</ion-label>
             </ion-item>
