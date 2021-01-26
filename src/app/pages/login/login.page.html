@@ -1,24 +1,30 @@
-<!-- <div class="buttons-wrapper">
-  <ion-button shape="round" expand="full" (click)="googleLogin()"
-    >Sign In With Google</ion-button
-  >
-  <ion-button
-    shape="round"
-    expand="full"
-    color="tertiary"
-    (click)="facebookLogin()"
-    >Sign In with Facebook</ion-button
-  >
-  <ion-button shape="round" expand="full" color="dark" (click)="twitterLogin()"
-    >Sign In With Twitter</ion-button
-  >
-</div> -->
-<div class="ion-padding wrapper">
+<div class="wrapper">
   <div class="logo">
     <ion-img
       src="https://leanfrontiers.com/wp-content/uploads/2018/12/logo-placeholder-png.png"
     >
     </ion-img>
+  </div>
+
+  <div class="social-signin">
+    <ion-button class="google" expand="block" (click)="googleLogin()">
+      <ion-icon name="logo-google" slot="start"></ion-icon>
+      Continue with Google
+    </ion-button>
+    <ion-button class="facebook" expand="block">
+      <ion-icon name="logo-facebook" slot="start"></ion-icon>
+      Continue with Facebook
+    </ion-button>
+    <ion-button class="twitter" expand="block">
+      <ion-icon name="logo-twitter" slot="start"></ion-icon>
+      Continue with Twitter
+    </ion-button>
+  </div>
+
+  <div class="divider">
+    <div class="line"></div>
+    <p>OR</p>
+    <div class="line"></div>
   </div>
 
   <form>
@@ -34,6 +40,11 @@
       <a>Forgot password?</a>
     </div>
 
-    <ion-button expand="block" size="default" type="submit">Sign In</ion-button>
+    <ion-button expand="block" type="submit">Sign In</ion-button>
   </form>
+
+  <div class="new-user">
+    <p>Don't have an account yet?</p>
+    <a>Sign Up</a>
+  </div>
 </div>

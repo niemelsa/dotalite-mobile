@@ -1,3 +1,7 @@
+ion-button {
+  text-transform: none;
+}
+
 .buttons-wrapper {
   display: flex;
   flex-direction: column;
@@ -15,6 +19,87 @@ div.wrapper {
   align-items: center;
   height: 100vh;
   width: 100vw;
+  padding: 40px;
+}
+
+.divider {
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  align-items: center;
+  width: 100%;
+
+  p {
+    color: rgb(172, 172, 172);
+    font-size: 14px;
+  }
+
+  div.line {
+    width: 100%;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.2);
+    // border: 1px solid #c4c4c4;
+    margin: 10px;
+    display: inline-block;
+  }
+}
+
+div.social-signin {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+
+  ion-button {
+    --border-style: solid;
+    --border-width: 1px;
+
+    &.google {
+      --background: transparent;
+      --border-color: #d84830;
+      --color: #d84830;
+    }
+
+    &.facebook {
+      // --background: #4064ac;
+      --background: transparent;
+      --border-color: #4064ac;
+      --color: #4064ac;
+    }
+
+    &.twitter {
+      // --background: #2fc5f5;
+      --background: transparent;
+      --border-color: #2fc5f5;
+      --color: #2fc5f5;
+    }
+  }
+}
+
+div.new-user {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  p {
+    color: rgb(218, 218, 218);
+    font-weight: 400;
+  }
+
+  a {
+    text-decoration: underline;
+  }
+}
+
+form {
+  width: 100%;
+
+  ion-item {
+    --inner-padding-bottom: 0px;
+    --inner-padding-top: 0px;
+    --padding-top: 0px;
+    --padding-bottom: 0px;
+  }
 }
 
 .logo {
@@ -45,15 +130,8 @@ ion-item {
   margin-bottom: 5px;
 }
 
-ion-input {
-}
-
 ion-button {
   margin-top: 10px;
   --padding-top: 10px;
   --padding-bottom: 10px;
-}
-
-form {
-  padding: 20px;
 }
