@@ -19,7 +19,7 @@ div.wrapper {
   align-items: center;
   height: 100vh;
   width: 100vw;
-  padding: 40px;
+  padding: 15%;
 }
 
 .divider {
@@ -31,7 +31,7 @@ div.wrapper {
 
   p {
     color: rgb(172, 172, 172);
-    font-size: 14px;
+    font-size: 12px;
   }
 
   div.line {
@@ -44,6 +44,10 @@ div.wrapper {
   }
 }
 
+div.email-signin {
+  width: 100%;
+}
+
 div.social-signin {
   display: flex;
   flex-direction: column;
@@ -51,27 +55,30 @@ div.social-signin {
   width: 100%;
 
   ion-button {
-    --border-style: solid;
-    --border-width: 1px;
+    // --border-style: solid;
+    // --border-width: 1px;
 
     &.google {
-      --background: transparent;
-      --border-color: #d84830;
-      --color: #d84830;
+      --background: #d84830;
+      // --border-color: #d84830;
+      // --color: #d84830;
+      --color: rgb(236, 236, 236);
     }
 
     &.facebook {
-      // --background: #4064ac;
-      --background: transparent;
-      --border-color: #4064ac;
-      --color: #4064ac;
+      --background: #4064ac;
+      // --background: transparent;
+      // --border-color: #4064ac;
+      // --color: #4064ac;
+      --color: rgb(236, 236, 236);
     }
 
     &.twitter {
-      // --background: #2fc5f5;
-      --background: transparent;
-      --border-color: #2fc5f5;
-      --color: #2fc5f5;
+      --background: #28acd8;
+      // --background: transparent;
+      // --border-color: #2fc5f5;
+      // --color: #2fc5f5;
+      --color: rgb(236, 236, 236);
     }
   }
 }
@@ -79,11 +86,14 @@ div.social-signin {
 div.new-user {
   width: 100%;
   display: flex;
-  justify-content: space-evenly;
   align-items: center;
+  justify-content: center;
+  font-size: 14px;
+
   p {
     color: rgb(218, 218, 218);
     font-weight: 400;
+    margin: 10px;
   }
 
   a {
@@ -95,10 +105,6 @@ form {
   width: 100%;
 
   ion-item {
-    --inner-padding-bottom: 0px;
-    --inner-padding-top: 0px;
-    --padding-top: 0px;
-    --padding-bottom: 0px;
   }
 }
 
