@@ -7,6 +7,7 @@
   <ion-buttons slot="end">
     <ion-button (click)="toggleFavorite(player)">
       <ion-icon
+        *ngIf="!isOwnProfile"
         color="dark"
         slot="icon-only"
         [name]="isFavorited ? 'heart' : 'heart-outline'"

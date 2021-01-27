@@ -11,7 +11,7 @@ export class PlayersService {
 
   constructor(private http: HttpClient) {}
 
-  getPlayerData(playerId: string): Observable<any> {
+  getPlayerData(playerId: string | number): Observable<any> {
     if (!playerId) {
       console.log('no player id');
       return;

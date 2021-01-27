@@ -26,13 +26,6 @@ const routes: Routes = [
           import('../players/players.module').then((m) => m.PlayersPageModule),
       },
       {
-        path: 'players/:id',
-        loadChildren: () =>
-          import('../players-profile/players-profile.module').then(
-            (m) => m.PlayersProfilePageModule
-          ),
-      },
-      {
         path: 'matches',
         loadChildren: () =>
           import('../matches/matches.module').then((m) => m.MatchesPageModule),

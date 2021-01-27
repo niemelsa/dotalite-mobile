@@ -1,4 +1,5 @@
-import { PresentationService } from './../../services/presentation.service';
+import { SearchComponent } from './../../components/search/search.component';
+import { ModalController } from '@ionic/angular';
 import { switchMap } from 'rxjs/operators';
 import { PlayersService } from './../../services/players.service';
 import { PlayerData } from './../../interfaces/player-data.interface';
@@ -20,7 +21,7 @@ export class HomePage implements OnInit {
   constructor(
     public auth: AuthService,
     private playersService: PlayersService,
-    private presentation: PresentationService
+    private modalController: ModalController
   ) {}
 
   ngOnInit() {
@@ -39,11 +40,18 @@ export class HomePage implements OnInit {
   }
 
   async toggleSearch() {
-    await this.presentation.presentSearchModal();
+    const modal = await this.modalController.create({
+      component: SearchComponent,
+      cssClass: 'search-modal',
+      componentProps: {
+        isLinkComponent: false,
+      },
+    });
+
+    await modal.present();
   }
 
   async toggleNotifications(event: any) {
-    // await this.presentation.presentNotificationsPopover(event);
     console.log('notifications clicked');
   }
 }

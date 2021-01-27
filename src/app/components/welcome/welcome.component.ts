@@ -1,4 +1,5 @@
-import { PresentationService } from './../../services/presentation.service';
+import { SearchComponent } from './../search/search.component';
+import { PlayersProfilePage } from 'src/app/pages/players-profile/players-profile.page';
 import { PlayerData } from './../../interfaces/player-data.interface';
 import { Component, Input } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
@@ -19,11 +20,30 @@ export class WelcomeComponent {
   constructor(
     public playersService: PlayersService,
     public authService: AuthService,
-    public modalController: ModalController,
-    private present: PresentationService
+    public modalController: ModalController
   ) {}
 
-  async initiateLinkingPlayer(): Promise<void> {
-    await this.present.presentPlayerLinkModal();
+  async linkPlayerProfile(): Promise<void> {
+    const modal = await this.modalController.create({
+      component: SearchComponent,
+      cssClass: 'search-modal',
+      componentProps: {
+        isLinkComponent: true,
+      },
+    });
+
+    await modal.present();
+  }
+
+  async openProfile(playerId: number): Promise<void> {
+    const modal = await this.modalController.create({
+      component: PlayersProfilePage,
+      componentProps: {
+        playerId,
+      },
+      cssClass: 'player-modal',
+    });
+
+    await modal.present();
   }
 }

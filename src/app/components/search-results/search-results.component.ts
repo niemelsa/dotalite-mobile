@@ -2,7 +2,6 @@ import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
 import { SearchResponse } from '../../interfaces/search-response.interface';
 import { PlayersService } from '../../services/players.service';
 import { ModalController } from '@ionic/angular';
-import { PlayersProfilePage } from 'src/app/pages/players-profile/players-profile.page';
 
 @Component({
   selector: 'app-search-results',
@@ -14,6 +13,7 @@ export class SearchResultsComponent implements OnInit {
   @Input() selected: string;
   @Input() isLinkComponent: boolean;
   @Output() linkEvent = new EventEmitter<any>();
+  @Output() openProfileEvent = new EventEmitter<any>();
 
   constructor(
     public playersService: PlayersService,
@@ -22,21 +22,11 @@ export class SearchResultsComponent implements OnInit {
 
   ngOnInit() {}
 
-  linkProfile(event, playerId) {
+  linkProfile(playerId) {
     this.linkEvent.emit(playerId);
   }
 
-  async openProfile(id: number) {
-    const modal = await this.modalController.create({
-      component: PlayersProfilePage,
-      componentProps: {
-        playerId: id,
-      },
-      cssClass: 'player-modal',
-    });
-    await modal.present();
-
-    const { data } = await modal.onWillDismiss();
-    console.log(data);
+  openProfile(playerId: string | number) {
+    this.openProfileEvent.emit(playerId);
   }
 }

@@ -6,7 +6,7 @@
       *ngIf="player; else loading"
       mode="md"
       button
-      [routerLink]="['/tabs/players', user.playerId]"
+      (click)="openProfile(user.playerId)"
       lines="none"
     >
       <ion-label>
@@ -22,7 +22,7 @@
   <ng-template #link>
     <ion-item
       button
-      (click)="initiateLinkingPlayer()"
+      (click)="linkPlayerProfile()"
       lines="none"
       class="add-profile"
     >

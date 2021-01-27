@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
 import { PlayerToolbarComponent } from './player-toolbar.component';
@@ -7,7 +7,7 @@ describe('PlayerToolbarComponent', () => {
   let component: PlayerToolbarComponent;
   let fixture: ComponentFixture<PlayerToolbarComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ PlayerToolbarComponent ],
       imports: [IonicModule.forRoot()]

@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
 import { ShortcutTrendingComponent } from './shortcut-trending.component';
@@ -7,7 +7,7 @@ describe('TrendingComponent', () => {
   let component: ShortcutTrendingComponent;
   let fixture: ComponentFixture<ShortcutTrendingComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ShortcutTrendingComponent],
       imports: [IonicModule.forRoot()],

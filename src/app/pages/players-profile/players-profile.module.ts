@@ -1,4 +1,3 @@
-import { PlayersProfilePageRoutingModule } from './players-profile-routing.module';
 import { PlayerToolbarComponent } from '../../components/player-toolbar/player-toolbar.component';
 import { PlayerInfoComponent } from '../../components/player-info/player-info.component';
 import { NgModule } from '@angular/core';
@@ -14,12 +13,7 @@ import { PlayerMatchesComponent } from '../../components/player-matches/player-m
 import { PlayerHeroesComponent } from '../../components/player-heroes/player-heroes.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    PlayersProfilePageRoutingModule,
-  ],
+  imports: [CommonModule, FormsModule, IonicModule],
   declarations: [
     PlayersProfilePage,
     PlayerInfoComponent,

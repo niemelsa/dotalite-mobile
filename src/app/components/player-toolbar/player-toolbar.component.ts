@@ -9,7 +9,6 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
-import { FavoritesActionType } from 'src/app/pages/players-profile/players-profile.page';
 
 @Component({
   selector: 'app-player-toolbar',
@@ -17,39 +16,50 @@ import { FavoritesActionType } from 'src/app/pages/players-profile/players-profi
   styleUrls: ['./player-toolbar.component.scss'],
 })
 export class PlayerToolbarComponent implements OnInit, OnChanges {
-  // public isFavorited: boolean;
-
-  @Input() isFavorited: boolean;
   @Input() user: UserInfo;
   @Input() player: PlayerData;
 
   @Output() backButtonClicked = new EventEmitter();
   @Output() favoriteToggledEvent = new EventEmitter();
 
+  public isOwnProfile: boolean;
+  public isFavorited: boolean;
+
   constructor() {}
 
   ngOnInit() {}
 
   ngOnChanges(changes: SimpleChanges) {
-    const { player, user } = changes;
+    let { player, user }: any = changes;
+
+    if (!player || !user) {
+      return;
+    }
+
+    player = player.currentValue as PlayerData;
+    user = user.currentValue as UserInfo;
 
     if (player && user) {
-      if (player.currentValue && user.currentValue) {
-        this.setIsFavorited(player.currentValue, user.currentValue);
-      }
+      this.isFavorited = this.checkIsFavorited(player, user);
+      this.isOwnProfile = this.checkIsOwnProfile(player, user);
     }
   }
 
-  private setIsFavorited(player: PlayerData, user: UserInfo): void {
+  private checkIsOwnProfile(player: PlayerData, user: UserInfo): boolean {
+    return player.profile.account_id === Number(user.playerId);
+  }
+
+  private checkIsFavorited(player: PlayerData, user: UserInfo): boolean {
     const { favorites } = user;
-    const playerId = player.profile.account_id;
+    const playerId = player.profile.account_id.toString();
     console.log(favorites, playerId);
     console.log(favorites.some((e) => e.favoriteId.includes(playerId)));
 
-    this.isFavorited =
+    return (
       playerId &&
       favorites &&
-      favorites.some((e) => e.favoriteId.includes(playerId));
+      favorites.some((e) => e.favoriteId.includes(playerId))
+    );
   }
 
   navigateBack() {
@@ -57,10 +67,10 @@ export class PlayerToolbarComponent implements OnInit, OnChanges {
   }
 
   toggleFavorite() {
-    const type = this.isFavorited
-      ? FavoritesActionType.Remove
-      : FavoritesActionType.Add;
-    this.favoriteToggledEvent.emit({ player: this.player, type });
+    this.favoriteToggledEvent.emit({
+      player: this.player,
+      isFavorited: this.isFavorited,
+    });
     this.isFavorited = !this.isFavorited;
   }
 }

@@ -16,9 +16,7 @@
       </ion-thumbnail>
 
       <ion-button
-        (click)="
-          $event.stopPropagation(); linkProfile($event, player.account_id)
-        "
+        (click)="$event.stopPropagation(); linkProfile(player.account_id)"
         icon-only
         *ngIf="isLinkComponent"
         class="link-button"

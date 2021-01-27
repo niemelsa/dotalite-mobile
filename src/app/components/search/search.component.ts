@@ -1,3 +1,4 @@
+import { PlayersProfilePage } from 'src/app/pages/players-profile/players-profile.page';
 import { UserService } from './../../services/user.service';
 import { AuthService } from './../../services/auth.service';
 import { Router } from '@angular/router';
@@ -26,7 +27,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   @Input() isLinkComponent: boolean;
 
   constructor(
-    private modalCtrl: ModalController,
+    private modalController: ModalController,
     public searchService: SearchService,
     private userService: UserService,
     private router: Router,
@@ -46,9 +47,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   dismiss() {
-    this.modalCtrl.dismiss({
-      dismissed: true,
-    });
+    this.modalController.dismiss();
   }
 
   handleLinkEvent(playerId: number) {
@@ -61,6 +60,18 @@ export class SearchComponent implements OnInit, OnDestroy {
           this.dismiss();
         });
       });
+  }
+
+  async handleOpenProfileEvent(playerId: string | number) {
+    const modal = await this.modalController.create({
+      component: PlayersProfilePage,
+      componentProps: {
+        playerId,
+      },
+      cssClass: 'player-modal',
+    });
+
+    await modal.present();
   }
 
   handleSearch(event) {

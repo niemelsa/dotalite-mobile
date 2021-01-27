@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
 import { ShortcutFavoritesComponent } from './shortcut-favorites.component';
@@ -7,7 +7,7 @@ describe('ShortcutFavoritesComponent', () => {
   let component: ShortcutFavoritesComponent;
   let fixture: ComponentFixture<ShortcutFavoritesComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ ShortcutFavoritesComponent ],
       imports: [IonicModule.forRoot()]
