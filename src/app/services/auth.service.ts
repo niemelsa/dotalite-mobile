@@ -66,8 +66,6 @@ export class AuthService {
   public async logInUser(user: UserInfo) {
     this.updateUserValue(user);
     await this.router.navigate(['tabs']);
-
-    console.log(user);
   }
 
   async logInWithGoogle() {

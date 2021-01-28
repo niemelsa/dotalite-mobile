@@ -1,0 +1,27 @@
+<main class="wrapper">
+  <div class="account">
+    <h1>Create account</h1>
+  </div>
+
+  <form>
+    <ion-item>
+      <ion-icon name="person-outline" slot="start"></ion-icon>
+      <ion-input placeholder="Username" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="mail-outline" slot="start"></ion-icon>
+      <ion-input placeholder="Email" type="email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
+      <ion-input placeholder="Password" type="password"></ion-input>
+    </ion-item>
+
+    <ion-button expand="block" type="submit">Sign Up</ion-button>
+  </form>
+
+  <div class="old-user">
+    <p>Already have an account?</p>
+    <a [routerLink]="['/login']">Sign In</a>
+  </div>
+</main>

@@ -13,16 +13,16 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
+<!-- welcome component -->
 <ion-content>
-  <!-- welcome component -->
   <app-welcome
     [user]="user$ | async"
     [player]="userPlayerData$ | async"
     [isLinked]="isLinked"
   ></app-welcome>
 
-  <div class="content-wrapper">
-    <!-- shortcut component -->
-    <app-shortcut [user]="user$ | async"></app-shortcut>
-  </div>
+  <!-- shortcut component -->
+  <app-shortcut [user]="user$ | async"></app-shortcut>
+
+  <div class="rest"></div>
 </ion-content>

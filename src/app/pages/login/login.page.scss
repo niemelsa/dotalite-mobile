@@ -11,7 +11,7 @@ ion-button {
   width: 100%;
 }
 
-div.wrapper {
+main.wrapper {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -38,7 +38,6 @@ div.wrapper {
     width: 100%;
     height: 1px;
     background: rgba(255, 255, 255, 0.2);
-    // border: 1px solid #c4c4c4;
     margin: 10px;
     display: inline-block;
   }
@@ -55,29 +54,20 @@ div.social-signin {
   width: 100%;
 
   ion-button {
-    // --border-style: solid;
-    // --border-width: 1px;
+    margin: 5px;
 
     &.google {
       --background: #d84830;
-      // --border-color: #d84830;
-      // --color: #d84830;
       --color: rgb(236, 236, 236);
     }
 
     &.facebook {
       --background: #4064ac;
-      // --background: transparent;
-      // --border-color: #4064ac;
-      // --color: #4064ac;
       --color: rgb(236, 236, 236);
     }
 
     &.twitter {
       --background: #28acd8;
-      // --background: transparent;
-      // --border-color: #2fc5f5;
-      // --color: #2fc5f5;
       --color: rgb(236, 236, 236);
     }
   }
@@ -89,6 +79,7 @@ div.new-user {
   align-items: center;
   justify-content: center;
   font-size: 14px;
+  margin-top: 10px;
 
   p {
     color: rgb(218, 218, 218);
@@ -103,9 +94,6 @@ div.new-user {
 
 form {
   width: 100%;
-
-  ion-item {
-  }
 }
 
 .logo {
@@ -137,7 +125,5 @@ ion-item {
 }
 
 ion-button {
-  margin-top: 10px;
-  --padding-top: 10px;
-  --padding-bottom: 10px;
+  // margin-top: 10px;
 }
