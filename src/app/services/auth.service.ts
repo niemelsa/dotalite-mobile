@@ -63,7 +63,7 @@ export class AuthService {
     });
   }
 
-  public async logInUser(user: UserInfo) {
+  private async logInUser(user: UserInfo) {
     this.updateUserValue(user);
     await this.router.navigate(['tabs']);
   }
@@ -86,5 +86,29 @@ export class AuthService {
         console.log('logged in with twitter');
       });
     });
+  }
+
+  async signUpWithEmail(email: string, password: string) {
+    this.afAuth
+      .createUserWithEmailAndPassword(email, password)
+      .then((res) => {
+        console.log('signed up successfully');
+        console.log(res);
+      })
+      .catch((error) => {
+        console.log('something went wrong');
+      });
+  }
+
+  async logInWithEmail(email: string, password: string) {
+    this.afAuth
+      .signInWithEmailAndPassword(email, password)
+      .then((res) => {
+        console.log('logged in successfully');
+        console.log(res);
+      })
+      .catch((error) => {
+        console.log('something went wrong');
+      });
   }
 }

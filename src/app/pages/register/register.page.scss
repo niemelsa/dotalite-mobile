@@ -163,6 +163,9 @@ ion-item {
   --border-color: rgba(255, 255, 255, 0.062);
   --border-width: 1px;
   margin-bottom: 5px;
+
+  --highlight-color-valid: #2fdf7591;
+  --highlight-color-invalid: #e7223c79;
 }
 
 ion-button {
