@@ -36,8 +36,13 @@ export class RegisterPage implements OnInit {
       return;
     }
 
-    this.auth.signUpWithEmail(value.email, value.password).then(() => {
-      this.registerForm.reset();
-    });
+    this.auth.signUpWithEmail(value.email, value.password).subscribe(
+      (token) => {
+        console.log('register: ', token);
+      },
+      (error) => {
+        console.log('errori tuli: ', error);
+      }
+    );
   }
 }

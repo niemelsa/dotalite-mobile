@@ -1,5 +1,5 @@
 import { UserInfo } from './../interfaces/user-info.interface';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable, BehaviorSubject, from } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AngularFireAuth } from '@angular/fire/auth';
@@ -7,8 +7,6 @@ import { cfaSignIn } from 'capacitor-firebase-auth';
 import { Router } from '@angular/router';
 import { filter, mergeMap, switchMap, tap } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
-
-// TODO: find better way
 import firebase from 'firebase';
 
 @Injectable({
@@ -31,6 +29,7 @@ export class AuthService {
     this.afAuth.authState
       .pipe(
         // tap and filter prevent http call to server incase user logs out
+        tap((user) => console.log('user: ', user)),
         tap((user) => !user && this.logOutUser()),
         filter<firebase.User>(Boolean),
         mergeMap((user) => user.getIdToken(true)),
@@ -88,16 +87,10 @@ export class AuthService {
     });
   }
 
-  async signUpWithEmail(email: string, password: string) {
-    this.afAuth
-      .createUserWithEmailAndPassword(email, password)
-      .then((res) => {
-        console.log('signed up successfully');
-        console.log(res);
-      })
-      .catch((error) => {
-        console.log('something went wrong');
-      });
+  signUpWithEmail(email: string, password: string): Observable<any> {
+    const promise = this.afAuth.createUserWithEmailAndPassword(email, password);
+
+    return from(promise).pipe(switchMap(({ user }) => user.getIdToken()));
   }
 
   async logInWithEmail(email: string, password: string) {
