@@ -1,7 +1,6 @@
 import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
 import { SearchResponse } from '../../interfaces/search-response.interface';
 import { PlayersService } from '../../services/players.service';
-import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-search-results',
@@ -15,10 +14,7 @@ export class SearchResultsComponent implements OnInit {
   @Output() linkEvent = new EventEmitter<any>();
   @Output() openProfileEvent = new EventEmitter<any>();
 
-  constructor(
-    public playersService: PlayersService,
-    private modalController: ModalController
-  ) {}
+  constructor(public playersService: PlayersService) {}
 
   ngOnInit() {}
 

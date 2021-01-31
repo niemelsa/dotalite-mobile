@@ -17,45 +17,49 @@
         </ion-menu-toggle>
       </ion-list>
 
-      <!-- <ng-container *ngIf="authService.user$ | async as user"> -->
-      <ion-list lines="none">
-        <ion-menu-toggle>
-          <ion-item>
-            <ion-icon slot="start" name="person-circle"></ion-icon>
-            <ion-label> Profile </ion-label>
-          </ion-item>
-        </ion-menu-toggle>
-        <ion-menu-toggle>
-          <ion-item>
-            <ion-icon slot="start" name="settings"></ion-icon>
-            <ion-label> Settings </ion-label>
-          </ion-item>
-        </ion-menu-toggle>
-      </ion-list>
+      <ng-container *ngIf="authService.user$ | async as user">
+        <ion-list lines="none">
+          <ion-menu-toggle>
+            <ion-item>
+              <ion-icon slot="start" name="person-circle"></ion-icon>
+              <ion-label> Profile </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+          <ion-menu-toggle>
+            <ion-item>
+              <ion-icon slot="start" name="settings"></ion-icon>
+              <ion-label> Settings </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
 
-      <ion-list lines="none">
-        <ion-item
-          mode="md"
-          button
-          (click)="handleLogoutClicked()"
-          class="login-button"
-        >
-          <ion-icon slot="start" name="log-out"></ion-icon>
-          <ion-label> Log Out </ion-label>
-        </ion-item>
-      </ion-list>
-      <!-- </ng-container> -->
-
-      <!-- <ng-template #loggedOut> -->
-      <ion-list lines="none">
-        <ion-menu-toggle>
-          <ion-item button (click)="handleLoginClicked()" class="login-button">
-            <ion-icon slot="start" name="log-in"></ion-icon>
-            <ion-label>Log In</ion-label>
+        <ion-list lines="none">
+          <ion-item
+            mode="md"
+            button
+            (click)="handleLogoutClicked()"
+            class="login-button"
+          >
+            <ion-icon slot="start" name="log-out"></ion-icon>
+            <ion-label> Log Out </ion-label>
           </ion-item>
-        </ion-menu-toggle>
-      </ion-list>
-      <!-- </ng-template> -->
+        </ion-list>
+      </ng-container>
+
+      <ng-template #loggedOut>
+        <ion-list lines="none">
+          <ion-menu-toggle>
+            <ion-item
+              button
+              (click)="handleLoginClicked()"
+              class="login-button"
+            >
+              <ion-icon slot="start" name="log-in"></ion-icon>
+              <ion-label>Log In</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+      </ng-template>
     </ion-content>
   </ion-menu>
 

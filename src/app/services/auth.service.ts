@@ -29,7 +29,6 @@ export class AuthService {
     this.afAuth.authState
       .pipe(
         // tap and filter prevent http call to server incase user logs out
-        tap((user) => console.log('user: ', user)),
         tap((user) => !user && this.logOutUser()),
         filter<firebase.User>(Boolean),
         mergeMap((user) => user.getIdToken(true)),
